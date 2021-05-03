@@ -1,4 +1,4 @@
-package br.com.dev.estoque.demo.model;
+package br.com.dev.estoque.demo.model.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,5 +14,6 @@ public class Contato {
     @Id @GeneratedValue
     private Long id;
     private String telefoneCelular;
-    private String telefonrFixo;
+    private String telefoneFixo;
+
 }

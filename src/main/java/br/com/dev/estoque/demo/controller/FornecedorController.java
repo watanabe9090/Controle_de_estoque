@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -53,10 +54,35 @@ public class FornecedorController {
         fornecedorDAO.save(fornecedor);
         return "redirect:/fornecedor";
     }
+    /*
+    *   Seção para atualização do fornecedor
+    */
+    @GetMapping("edit/{id}")
+    public String getEditFornecedorPage(@PathVariable("id") long id, Model model) {
+        Fornecedor fornecedor = fornecedorDAO.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Id inválido: " + id));
+        model.addAttribute("fornecedor", fornecedor);
+        return "fornecedor_alterar";
+    }
 
-    @GetMapping("delete")
-    public String deleteFornecedor(@ModelAttribute Fornecedor fornecedor) {
-        System.out.println(fornecedor.toString());
+    @PostMapping("edit/{id}")
+    public String editFornecedor(@PathVariable("id") long id, Fornecedor fornecedor, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            fornecedor.setId(id);
+            return "fornecedor_alterar";
+        }
+        fornecedorDAO.save(fornecedor);
+        return "redirect:/fornecedor";
+    }
+
+
+    /*
+     *   Seção para deleção do fornecedor
+     */
+    @GetMapping("delete/{id}")
+    public String deleteFornecedor(@PathVariable("id") long id, Model model) {
+        Fornecedor fornecedor = fornecedorDAO.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Id inválido: " + id));
         fornecedorDAO.delete(fornecedor);
         return "redirect:/fornecedor";
     }

@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fornecedor.css}"/>
     <title>Title</title>
 </head>
 <body>
     <div class="menu_lateral">
-        <span>AlphumLogs</span>
         <a href="/">Home</a>
         <a href="/mercadoria">Mercadorias</a>
         <a href="/fornecedor">Fornecedores</a>
@@ -51,9 +51,13 @@
                     <td><span th:text="${fornecedor.nomeFantasia}">Nome Fantasia</span></td>
                     <td><span th:text="${fornecedor.email}">E-mail</span></td>
                     <td><span th:text="${fornecedor.descricao}">Descrição</span></td>
-                    <td>
-                        <button class="ui blue basic button"><i class="edit outline icon"></i></button>
-                        <button class="ui red basic button"><i class="minus circle icon"></i></button>
+                    <td id="fornecedor-options-buttons" class="one wide">
+                        <a class="ui tiny green button" th:href="@{/fornecedor/edit/{id}(id=${fornecedor.id})}">
+                            <i class="edit outline icon" style="margin-right:5px"></i>Editar
+                        </a>
+                        <a class="ui tiny red button" th:href="@{/fornecedor/delete/{id}(id=${fornecedor.id})}">
+                            <i class="minus circle icon" ></i>Deletar
+                        </a>
                     </td>
                 </tr>
             </tbody>

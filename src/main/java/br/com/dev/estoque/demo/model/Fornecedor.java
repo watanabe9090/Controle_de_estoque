@@ -1,6 +1,7 @@
 package br.com.dev.estoque.demo.model;
 
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class Fornecedor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String razaoSocial;
     private String nomeFantasia;
     private String email;
