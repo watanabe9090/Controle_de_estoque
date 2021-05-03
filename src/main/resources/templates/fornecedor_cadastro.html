@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+    <title>Title</title>
+</head>
+<body>
+    <div class="menu_lateral">
+        <a href="/">Mercadorias</a>
+        <a href="/fornecedor">Fornecedores</a>
+        <a href="#">Expedição</a>
+        <a href="#">Clientes</a>
+    </div>
+
+    <div class="pusher">
+        <div class="ui segment">
+            <form th:action="@{/fornecedor/cadastro/save}" th:object="${fornecedor}" method="post" class="ui form">
+                <h2 class="ui dividing header">Cadastro de Fornecedores</h2>
+
+                <div class="field">
+                    <label>Nome Fantasia</label>
+                    <input type="text" th:field="*{nomeFantasia}" placeholder="Ex: Casa de Doces Bomzão">
+                </div>
+                <div class="field">
+                    <label>Razão Social</label>
+                    <input type="text" th:field="*{razaoSocial}" placeholder="Ex: Marco de Freitas Junior">
+                </div>
+
+                <div class="field">
+                    <label>E-mail</label>
+                    <input type="text" th:field="*{email}" placeholder="Ex: marcofreitas@hotmail.com">
+                </div>
+
+                <div class="field">
+                    <label>Descrição</label>
+                    <textarea th:field="*{descricao}"></textarea>
+                </div>
+
+
+                <button value="submit" class="ui primary button">Cadastrar</button>
+                <button class="ui button">Cancelar </button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+</body>
+</html>

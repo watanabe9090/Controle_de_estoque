@@ -1,0 +1,28 @@
+2021-05-01 07:47:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: テーブル "FORNECEDOR" が見つかりません
+Table "FORNECEDOR" not found; SQL statement:
+select fornecedor0_.id as id1_0_, fornecedor0_.descricao as descrica2_0_, fornecedor0_.email as email3_0_, fornecedor0_.nome_fantasia as nome_fan4_0_, fornecedor0_.razao_social as razao_so5_0_ from fornecedor fornecedor0_ [42102-200]
+2021-05-01 07:50:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: テーブル "FORNECEDOR" が見つかりません
+Table "FORNECEDOR" not found; SQL statement:
+select fornecedor0_.id as id1_0_, fornecedor0_.descricao as descrica2_0_, fornecedor0_.email as email3_0_, fornecedor0_.nome_fantasia as nome_fan4_0_, fornecedor0_.razao_social as razao_so5_0_ from fornecedor fornecedor0_ [42102-200]
+2021-05-01 07:53:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: テーブル "FORNECEDOR" が見つかりません
+Table "FORNECEDOR" not found; SQL statement:
+select fornecedor0_.id as id1_0_, fornecedor0_.descricao as descrica2_0_, fornecedor0_.email as email3_0_, fornecedor0_.nome_fantasia as nome_fan4_0_, fornecedor0_.razao_social as razao_so5_0_ from fornecedor fornecedor0_ [42102-200]
+2021-05-01 07:54:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: テーブル "FORNECEDOR" が見つかりません
+Table "FORNECEDOR" not found; SQL statement:
+select fornecedor0_.id as id1_0_, fornecedor0_.descricao as descrica2_0_, fornecedor0_.email as email3_0_, fornecedor0_.nome_fantasia as nome_fan4_0_, fornecedor0_.razao_social as razao_so5_0_ from fornecedor fornecedor0_ [42102-200]
+2021-05-01 08:00:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: テーブル "FORNECEDOR" が見つかりません
+Table "FORNECEDOR" not found; SQL statement:
+select fornecedor0_.id as id1_0_, fornecedor0_.descricao as descrica2_0_, fornecedor0_.email as email3_0_, fornecedor0_.nome_fantasia as nome_fan4_0_, fornecedor0_.razao_social as razao_so5_0_ from fornecedor fornecedor0_ [42102-200]
+2021-05-01 08:04:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "SHOW DATABASE[*]"
+Syntax error in SQL statement "SHOW DATABASE[*]"; SQL statement:
+show database [42000-200]
+2021-05-01 08:04:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "SHOW DATABASE[*]"
+Syntax error in SQL statement "SHOW DATABASE[*]"; SQL statement:
+show database [42000-200]

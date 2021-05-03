@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+    <title>Title</title>
+</head>
+<body>
+    <div class="menu_lateral">
+        <span>AlphumLogs</span>
+        <a href="/">Home</a>
+        <a href="/mercadoria">Mercadorias</a>
+        <a href="/fornecedor">Fornecedores</a>
+        <a href="/expedicao">Expedição</a>
+        <a href="/cliente">Clientes</a>
+    </div>
+
+
+
+    <div class="pusher">
+        <h1 class="ui dividing header">Fornecedores</h1>
+        <button class="ui basic button"> <i class="icon user"></i><a href="fornecedor/cadastro">Adicionar Fornecedor</a></button>
+        <button class="ui basic button"> <i class="minus circle icon"></i></i>Remover Fornecedor</button>
+        <br>
+        <form method="get" th:action="@{/fornecedor}" class="ui fluid icon input">
+            <input type="text" name="nomeFantasia" style="margin-right: 20px;" placeholder="Pesquisar Fornecedor">
+            <button class="ui primary button" type="submit"><i class="search icon"></i></button>
+        </form>
+        <br>
+        <button class="ui basic button"> <i class="sort alphabet down icon"></i>Organizar</button>
+        <table class="ui celled table">
+            <thead>
+            <tr><th>ID</th>
+                <th>Razão Sociaç</th>
+                <th>Nome Fantasia</th>
+                <th>E-mail</th>
+                <th>Descrição</th>
+                <th>Opções</th>
+            </tr></thead>
+            <tbody>
+                <tr th:if="${fornecedores.empty}">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr th:each="fornecedor : ${fornecedores}">
+                    <td><span th:text="${fornecedor.id}">ID</span></td>
+                    <td><span th:text="${fornecedor.razaoSocial}">Razão Social</span></td>
+                    <td><span th:text="${fornecedor.nomeFantasia}">Nome Fantasia</span></td>
+                    <td><span th:text="${fornecedor.email}">E-mail</span></td>
+                    <td><span th:text="${fornecedor.descricao}">Descrição</span></td>
+                    <td>
+                        <button class="ui blue basic button"><i class="edit outline icon"></i></button>
+                        <button class="ui red basic button"><i class="minus circle icon"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+</body>
+</html>
