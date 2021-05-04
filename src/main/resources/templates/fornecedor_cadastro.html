@@ -8,12 +8,8 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="menu_lateral">
-        <a href="/">Mercadorias</a>
-        <a href="/fornecedor">Fornecedores</a>
-        <a href="#">Expedição</a>
-        <a href="#">Clientes</a>
-    </div>
+
+    <div th:replace="fragments/menu.html :: menu"> </div>
 
     <div class="pusher">
         <div class="ui segment">

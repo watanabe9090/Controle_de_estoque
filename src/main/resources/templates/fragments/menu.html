@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="menubar">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+</head>
+<body>
+    <div th:fragment="menu">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+        <div class="menu_content">
+            <a href="/"><i class="home icon"></i>Home</a>
+            <a href="/mercadoria"><i class="shopping bag icon"></i>Mercadorias</a>
+            <a href="/fornecedor"><i class="address card icon"></i>Fornecedores</a>
+            <a href="/expedicao"><i class="shopping cart icon"></i>Expedição</a>
+            <a href="/cliente"><i class="users icon"></i>Clientes</a>
+        </div>
+        <div class="menu_footer">
+
+        </div>
+    </div>
+
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>-->
+
+</body>
+</html>
