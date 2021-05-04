@@ -1,6 +1,8 @@
 package br.com.dev.estoque.demo.controller;
 
 import br.com.dev.estoque.demo.model.Fornecedor;
+import br.com.dev.estoque.demo.model.util.Contato;
+import br.com.dev.estoque.demo.model.util.Endereco;
 import br.com.dev.estoque.demo.repository.FornecedorRepository;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +23,12 @@ public class FornecedorController {
     @Autowired
     public FornecedorController(FornecedorRepository fornecedorDAO) {
         this.fornecedorDAO = fornecedorDAO;
-        this.fornecedorDAO.save(new Fornecedor(10, "Marcos", "ChurrosM", "marcosemai@ghotma", "microemprendedor"));
-        this.fornecedorDAO.save(new Fornecedor(10, "Marcos", "ChurrosA", "marcosemai@ghotma", "microemprendedor"));
-        this.fornecedorDAO.save(new Fornecedor(10, "Marcos", "ChurrosAA", "marcosemai@ghotma", "microemprendedor"));
-        this.fornecedorDAO.save(new Fornecedor(10, "Marcos", "ChurrosAB", "marcosemai@ghotma", "microemprendedor"));
-        this.fornecedorDAO.save(new Fornecedor(10, "Marcos", "ChurrosABB", "marcosemai@ghotma", "microemprendedor"));
-        this.fornecedorDAO.save(new Fornecedor(10, "Marcos", "ChurrosAAAAB", "marcosemai@ghotma", "microemprendedor"));
+        this.fornecedorDAO.save(
+                new Fornecedor(10, "Marcos", "ChurrosM", "marcosemai@ghotma", "microemprendedor",
+                new Contato(123,"91111-4444", "1234-5678"),
+                new Endereco(12903, "AKSDH", "asdas d", "asd ads ", "1231 ", "020-9239")
+            )
+        );
 
     }
 

@@ -10,11 +10,11 @@
 </head>
 <body>
     <div class="menu_lateral">
-        <a href="/">Home</a>
-        <a href="/mercadoria">Mercadorias</a>
-        <a href="/fornecedor">Fornecedores</a>
-        <a href="/expedicao">Expedição</a>
-        <a href="/cliente">Clientes</a>
+        <a href="/"><i class="home icon"></i>Home</a>
+        <a href="/mercadoria"><i class="shopping bag icon"></i>Mercadorias</a>
+        <a href="/fornecedor"><i class="address card icon"></i>Fornecedores</a>
+        <a href="/expedicao"><i class="shopping cart icon"></i>Expedição</a>
+        <a href="/cliente"><i class="users icon"></i>Clientes</a>
     </div>
 
 
@@ -22,20 +22,19 @@
     <div class="pusher">
         <h1 class="ui dividing header">Fornecedores</h1>
         <button class="ui basic button"> <i class="icon user"></i><a href="fornecedor/cadastro">Adicionar Fornecedor</a></button>
-        <button class="ui basic button"> <i class="minus circle icon"></i></i>Remover Fornecedor</button>
         <br>
         <form method="get" th:action="@{/fornecedor}" class="ui fluid icon input">
-            <input type="text" name="nomeFantasia" style="margin-right: 20px;" placeholder="Pesquisar Fornecedor">
-            <button class="ui primary button" type="submit"><i class="search icon"></i></button>
+            <input type="text" name="nomeFantasia" style="margin-right: 5px; margin-top:10px;" placeholder="Pesquisar Fornecedor">
+            <button class="ui primary mini button" type="submit"><i style="font-size: 20px" class="search icon"></i></button>
         </form>
         <br>
-        <button class="ui basic button"> <i class="sort alphabet down icon"></i>Organizar</button>
         <table class="ui celled table">
             <thead>
             <tr><th>ID</th>
                 <th>Razão Sociaç</th>
                 <th>Nome Fantasia</th>
                 <th>E-mail</th>
+                <th>Telefone</th>
                 <th>Descrição</th>
                 <th>Opções</th>
             </tr></thead>
@@ -46,16 +45,20 @@
                     <td></td>
                 </tr>
                 <tr th:each="fornecedor : ${fornecedores}">
-                    <td><span th:text="${fornecedor.id}">ID</span></td>
-                    <td><span th:text="${fornecedor.razaoSocial}">Razão Social</span></td>
-                    <td><span th:text="${fornecedor.nomeFantasia}">Nome Fantasia</span></td>
-                    <td><span th:text="${fornecedor.email}">E-mail</span></td>
-                    <td><span th:text="${fornecedor.descricao}">Descrição</span></td>
-                    <td id="fornecedor-options-buttons" class="one wide">
-                        <a class="ui tiny green button" th:href="@{/fornecedor/edit/{id}(id=${fornecedor.id})}">
+                    <td class="one wide field"><span th:text="${fornecedor.id}">ID</span></td>
+                    <td class="three wide field"><span th:text="${fornecedor.razaoSocial}">Razão Social</span></td>
+                    <td class="two wide field"><span th:text="${fornecedor.nomeFantasia}">Nome Fantasia</span></td>
+                    <td class="two wide field"><span th:text="${fornecedor.email}">E-mail</span></td>
+                    <td class="two wide field">
+                        Fix:&nbsp<span th:text="${fornecedor.contato.telefoneFixo}">Telefone Fixo</span><br>
+                        Cel:&nbsp<span th:text="${fornecedor.contato.telefoneCelular}">Telefone Celular</span>
+                    </td>
+                    <td class="three wide field"><span th:text="${fornecedor.descricao}">Descrição</span></td>
+                    <td id="fornecedor-options-buttons" class="four wide field">
+                        <a class="ui mini green button" th:href="@{/fornecedor/edit/{id}(id=${fornecedor.id})}">
                             <i class="edit outline icon" style="margin-right:5px"></i>Editar
                         </a>
-                        <a class="ui tiny red button" th:href="@{/fornecedor/delete/{id}(id=${fornecedor.id})}">
+                        <a class="ui mini red button" th:href="@{/fornecedor/delete/{id}(id=${fornecedor.id})}">
                             <i class="minus circle icon" ></i>Deletar
                         </a>
                     </td>

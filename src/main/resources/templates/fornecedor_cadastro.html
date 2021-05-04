@@ -17,28 +17,71 @@
 
     <div class="pusher">
         <div class="ui segment">
-            <form th:action="@{/fornecedor/cadastro/save}" th:object="${fornecedor}" method="post" class="ui form">
+            <form th:action="@{/fornecedor/cadastro/save}"
+                  th:object="${fornecedor}"
+                  method="post"
+                  class="ui form">
                 <h2 class="ui dividing header">Cadastro de Fornecedores</h2>
 
-                <div class="field">
-                    <label>Nome Fantasia</label>
-                    <input type="text" th:field="*{nomeFantasia}" placeholder="Ex: Casa de Doces Bomzão">
-                </div>
-                <div class="field">
-                    <label>Razão Social</label>
-                    <input type="text" th:field="*{razaoSocial}" placeholder="Ex: Marco de Freitas Junior">
+                <div class="fields">
+                    <div class="eight wide field">
+                        <label>Nome Fantasia</label>
+                        <input type="text" th:field="*{nomeFantasia}" placeholder="Ex: Casa de Doces Bomzão">
+                    </div>
+                    <div class="eight wide field">
+                        <label>Razão Social</label>
+                        <input type="text" th:field="*{razaoSocial}" placeholder="Ex: Marco de Freitas Junior">
+                    </div>
                 </div>
 
-                <div class="field">
-                    <label>E-mail</label>
-                    <input type="text" th:field="*{email}" placeholder="Ex: marcofreitas@hotmail.com">
+
+                <h3 class="ui dividing header">Endereço</h3>
+                <div class="fields">
+                    <div class="four wide field">
+                        <label>CEP</label>
+                        <input type="text" th:field="*{endereco.cep}" placeholder="Ex: Casa de Doces Bomzão">
+                    </div>
+                    <div class="eleven wide field">
+                        <label>Rua</label>
+                        <input type="text" th:field="*{endereco.rua}" placeholder="Ex: Casa de Doces Bomzão">
+                    </div>
+                    <div class="two wide field">
+                        <label>Numero</label>
+                        <input type="text" th:field="*{endereco.numero}" placeholder="Ex: Casa de Doces Bomzão">
+                    </div>
+                </div>
+
+                <div class="fields">
+                    <div class="ten wide field">
+                        <label>Bairro</label>
+                        <input type="text" th:field="*{endereco.bairro}" placeholder="Ex: Casa de Doces Bomzão">
+                    </div>
+                    <div class="six wide field">
+                        <label>Cidade</label>
+                        <input type="text" th:field="*{endereco.cidade}" placeholder="Ex: Casa de Doces Bomzão">
+                    </div>
+                </div>
+
+                <h3 class="ui dividing header">Contato</h3>
+                <div class="fields">
+                    <div class="eight wide field">
+                        <label>E-mail</label>
+                        <input type="text" th:field="*{email}" placeholder="Ex: marcofreitas@hotmail.com">
+                    </div>
+                    <div class="four wide field">
+                        <label>Telefone Celular</label>
+                        <input class="field" type="text" th:field="*{contato.telefoneCelular}" placeholder="Ex: marcofreitas@hotmail.com">
+                    </div>
+                    <div class="four wide field">
+                        <label>Telefone fixo</label>
+                        <input class="field" type="text" th:field="*{contato.telefoneFixo}" placeholder="Ex: marcofreitas@hotmail.com">
+                    </div>
                 </div>
 
                 <div class="field">
                     <label>Descrição</label>
                     <textarea th:field="*{descricao}"></textarea>
                 </div>
-
 
                 <button value="submit" class="ui primary button">Cadastrar</button>
                 <button class="ui button">Cancelar </button>

@@ -3,6 +3,8 @@ package br.com.dev.estoque.demo.controller;
 
 import br.com.dev.estoque.demo.model.Fornecedor;
 import br.com.dev.estoque.demo.model.Mercadoria;
+import br.com.dev.estoque.demo.model.util.Contato;
+import br.com.dev.estoque.demo.model.util.Endereco;
 import br.com.dev.estoque.demo.repository.FornecedorRepository;
 import br.com.dev.estoque.demo.repository.MercadoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,13 @@ public class MercadoriaController {
     @Autowired
     public MercadoriaController(MercadoriaRepository mercadoriaDAO) {
         this.mercadoriaDAO = mercadoriaDAO;
-        this.mercadoriaDAO.save(new Mercadoria(10, new Fornecedor(10, "Marcos", "ChurrosM", "marcosemai@ghotma", "microemprendedor"), "ChurrosA", "ROyalChurros", "CHurros do bão"));
+        this.mercadoriaDAO.save(new Mercadoria(100,
+                new Fornecedor(10, "Marcos", "ChurrosM", "marcosemai@ghotma", "microemprendedor",
+                        new Contato(123,"91111-4444", "1234-5678"),
+                        new Endereco(12903, "AKSDH", "asdas d", "asd ads ", "1231 ", "020-9239")
+                ), "ChurrosA", "ROyalChurros", "CHurros do bão")
+        );
+
     }
 
 
