@@ -13,19 +13,18 @@ public class ItemEstocado implements Serializable {
     @Id @GeneratedValue
     private long id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "mercadoria", referencedColumnName = "id")
-//    private Mercadoria mercadoria;
-//
-//
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "lote", referencedColumnName = "id")
-//    private Lote lote;
+    @ManyToOne
+    @JoinColumn(name = "mercadoria", referencedColumnName = "id")
+    private Mercadoria mercadoria;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
+    @JoinColumn(name = "lote", referencedColumnName = "id")
+    private Lote lote;
+
 //    @JoinColumn(name = "local", referencedColumnName = "id")
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "local", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "local")
     private Local local;
 
     private int quantidade;
