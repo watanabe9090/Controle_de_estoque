@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="pusher">
+        <a class="ui basic button" href="mercadoria/cadastro"><i class="icon user"></i>Adicionar Mercadoria</a>
+        <button class="ui basic button"> <i class="minus circle icon"></i></i>Remover Mercadoria</button>
+        <br>
+        <div class="ui fluid icon input">
+            <input type="text" placeholder="Search a very wide input...">
+            <i class="search icon"></i>
+        </div>
+        <br>
+        <button class="ui basic button"> <i class="sort alphabet down icon"></i>Organizar</button>
+        <table class="ui celled table">
+            <thead>
+            <tr><th>ID</th>
+                <th>Nome</th>
+                <th>Marca</th>
+                <th>Preco</th>
+                <th>Quantiade Estoque</th>
+                <th>Fornecedor</th>
+                <th>Descrição</th>
+                <th>Opções</th>
+            </tr></thead>
+            <tbody>
+            <tr th:if="${item_estocado.empty}">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr th:each="item_estocado : ${itens_estocados}" >
+                <td class="one wide field"><span th:text="${item_estocado.id}"></span></td>
+                <td class="three wide field"><span th:text="${item_estocado.mercadoria.nome}"></span></td>
+                <td class="three wide field"><span th:text="${item_estocado.mercadoria.marca}"></span></td>
+                <td class="two wide field"></td>
+                <td class="one wide field"><span th:text="${item_estocado.quantidade}"></span></td>
+                <td class="three wide field"><span th:text="${item_estocado.mercadoria.fornecedor.nomeFantasia}"></span></td>
+                <td class="three wide field"><span th:text="${item_estocado.mercadoria.descricao}"></span></td>
+                <td><span><i class="address card outline icon"></i></span><span><i class="minus circle icon"></i></span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
