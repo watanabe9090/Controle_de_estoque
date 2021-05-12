@@ -10,8 +10,9 @@
     - Thymleaf
     
 ### Descrição
-    
+
 
 ### Instalação
 
 #### Documentação e Autor
+	Eduardo Augusto
