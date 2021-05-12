@@ -22,10 +22,6 @@ public class Mercadoria implements Serializable {
     private String marca;
     private String descricao;
 
-    private double precoCompra;
-    private double precoVenda;
-    private double quantidadeEstoqueMinimo;
-    private double quantidadeEstoqueAtual;
 
 
 }

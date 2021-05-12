@@ -6,11 +6,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/fornecedor.css}"/>
-    <title>Title</title>
+    <title>Fornecedores</title>
 </head>
 <body>
     <div th:replace="fragments/menu.html :: menu"/>
-
 
     <div class="pusher">
         <h1 class="ui dividing header">Fornecedores</h1>
@@ -36,6 +35,9 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr th:each="fornecedor : ${fornecedores}">
                     <td class="one wide field"><span th:text="${fornecedor.id}">ID</span></td>
@@ -47,11 +49,11 @@
                         Cel:&nbsp<span th:text="${fornecedor.contato.telefoneCelular}">Telefone Celular</span>
                     </td>
                     <td class="three wide field"><span th:text="${fornecedor.descricao}">Descrição</span></td>
-                    <td id="fornecedor-options-buttons" class="four wide field">
-                        <a class="ui mini green button" th:href="@{/fornecedor/edit/{id}(id=${fornecedor.id})}">
-                            <i class="edit outline icon" style="margin-right:5px"></i>Editar
+                    <td id="fornecedor-options-buttons" class="two wide field">
+                        <a class="ui mini basic blue button" th:href="@{/fornecedor/edit/{id}(id=${fornecedor.id})}">
+                            <i class="edit outline icon"></i>Editar
                         </a>
-                        <a class="ui mini red button" th:href="@{/fornecedor/delete/{id}(id=${fornecedor.id})}">
+                        <a class="ui mini basic red button" th:href="@{/fornecedor/delete/{id}(id=${fornecedor.id})}">
                             <i class="minus circle icon" ></i>Deletar
                         </a>
                     </td>
