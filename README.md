@@ -12,7 +12,10 @@
 ### Descrição
 
 
-### Instalação
 
 #### Documentação e Autor
 	Eduardo Augusto
+	Marco Aurelio Minozzo
+	Gabriel Francischini
+	Antonio Vinicius
+	Yuri Takae Watanabe
