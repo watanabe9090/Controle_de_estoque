@@ -13,7 +13,7 @@ import java.util.List;
 public class Cliente {
 
     @Id @GeneratedValue
-    private Long id;
+    private long id;
 
     private String nome;
     private String CPF;
