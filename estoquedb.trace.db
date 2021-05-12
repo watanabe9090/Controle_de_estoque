@@ -26,3 +26,7 @@ show database [42000-200]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "SHOW DATABASE[*]"
 Syntax error in SQL statement "SHOW DATABASE[*]"; SQL statement:
 show database [42000-200]
+2021-05-12 11:55:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: テーブル "FORNECEDOR" が見つかりません
+Table "FORNECEDOR" not found; SQL statement:
+select fornecedor0_.id as id1_5_2_, fornecedor0_.contato_id as contato_6_5_2_, fornecedor0_.descricao as descrica2_5_2_, fornecedor0_.email as email3_5_2_, fornecedor0_.endereco_id as endereco7_5_2_, fornecedor0_.nome_fantasia as nome_fan4_5_2_, fornecedor0_.razao_social as razao_so5_5_2_, contato1_.id as id1_1_0_, contato1_.telefone_celular as telefone2_1_0_, contato1_.telefone_fixo as telefone3_1_0_, endereco2_.id as id1_2_1_, endereco2_.bairro as bairro2_2_1_, endereco2_.cep as cep3_2_1_, endereco2_.cidade as cidade4_2_1_, endereco2_.numero as numero5_2_1_, endereco2_.rua as rua6_2_1_ from fornecedor fornecedor0_ left outer join contato contato1_ on fornecedor0_.contato_id=contato1_.id left outer join endereco endereco2_ on fornecedor0_.endereco_id=endereco2_.id where fornecedor0_.id=? [42102-200]

@@ -15,7 +15,8 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "fornecedor")
-public class FornecedorController {
+public class
+FornecedorController {
 
     private final FornecedorRepository fornecedorDAO;
 
@@ -24,11 +25,10 @@ public class FornecedorController {
         this.fornecedorDAO = fornecedorDAO;
         this.fornecedorDAO.save(
                 new Fornecedor(10, "Marcos", "ChurrosM", "marcosemai@ghotma", "microemprendedor",
-                new Contato(123,"91111-4444", "1234-5678"),
-                new Endereco(12903, "AKSDH", "asdas d", "asd ads ", "1231 ", "020-9239")
-            )
+                        new Contato(123, "91111-4444", "1234-5678"),
+                        new Endereco(12903, "AKSDH", "asdas d", "asd ads ", "1231 ", "020-9239")
+                )
         );
-
     }
 
     @GetMapping

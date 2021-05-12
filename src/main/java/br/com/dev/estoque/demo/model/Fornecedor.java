@@ -23,10 +23,10 @@ public class Fornecedor implements Serializable {
     private String email;
     private String descricao;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contato_id", referencedColumnName = "id")
+    @JoinColumn(name = "contato", referencedColumnName = "id")
     private Contato contato;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    @JoinColumn(name = "endereco", referencedColumnName = "id")
     private Endereco endereco;
 }
