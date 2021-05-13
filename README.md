@@ -1,21 +1,19 @@
-#Software de gerência de estoque
-### Introdução
+# **Swiftlog - Software de Gerência de Estoque**
+## **Introdução**
 - O projeto é voltado para o estudo e aprendizado das tecnologias:
     - Java
     - Hibernate ORM
-    - Spring boot
+    - Spring Boot
     - HTML5
     - CSS3
-    - Javascript
+    - JavaScript
     - Thymleaf
     
-### Descrição
-
-
-
-#### Documentação e Autor
-	Eduardo Augusto
-	Marco Aurelio Minozzo
-	Gabriel Francischini
+## **Descrição**
+ - O projeto abrange os processo de venda de mercadorias, definidos na especificação de requisitos.
+### **Documentação e Autor**
 	Antonio Vinicius
+	Eduardo Augusto
+	Gabriel Francischini
+	Marco Aurelio Minozzo
 	Yuri Takae Watanabe
