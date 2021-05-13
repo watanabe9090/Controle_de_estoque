@@ -25,21 +25,51 @@
 
                 <div class="eight wide field">
                     <label>CPF</label>
-                    <input type="text" th:field="*{CPF}" placeholder="Ex: João da Silva Mendes">
+                    <input type="text" oninput="mascaraCPF(this)" th:field="*{CPF}" placeholder="Ex: 542.123.542-25">
                 </div>
 
                 <div class="eight wide field">
                     <label>RG</label>
-                    <input type="text" th:field="*{RG}" placeholder="Ex: 02343254378">
+                    <input type="text" oninput="mascaraRG(this)" th:field="*{RG}" placeholder="Ex: 023.432.543-78">
                 </div>
-
             </div>
 
+            <button value="submit" style="margin-top: 10px;" class="ui primary button">Cadastrar</button>
+            <button class="ui button">Cancelar </button>
         </form>
     </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+<script>
+    
+    function mascaraCPF(i){
+   var v = i.value;
+   
+   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+      i.value = v.substring(0, v.length-1);
+      return;
+   }
+   
+   i.setAttribute("maxlength", "14");
+   if (v.length == 3 || v.length == 7) i.value += ".";
+   if (v.length == 11) i.value += "-";
+
+}
+    function mascaraRG(i){
+   var v = i.value;
+   
+   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+      i.value = v.substring(0, v.length-1);
+      return;
+   }
+   
+   i.setAttribute("maxlength", "12");
+   if (v.length == 2 || v.length == 6) i.value += ".";
+   if (v.length == 10) i.value += "-";
+
+}
+</script>
 </body>
 </html>
