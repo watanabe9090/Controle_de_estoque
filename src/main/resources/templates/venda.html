@@ -11,16 +11,39 @@
     <div th:replace="fragments/menu.html :: menu"/>
 
 
-    <div class="eight wide field">
-        <label>Fornecedor</label>
-        <select th:field="*{mercadoria.fornecedor}">
-            <option th:each="fornecedor : ${fornecedores}"
-                    th:value="${fornecedor.id}"
-                    th:text="${fornecedor.nomeFantasia}">
-            </option>
-        </select>
+    <div class="pusher">
+        <h1 class="ui dividing header">Vendas</h1>
+        <a class="ui basic button" href="/venda/cadastro"><i class="icon user"></i>Realizar Venda</a>
+        <br>
+        <table class="ui celled table">
+            <thead>
+            <tr><th>ID</th>
+                <th>Data</th>
+                <th>Cliente</th>
+                <th>Valor</th>
+                <th>Detalhes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${vendas.empty}">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr th:each="venda : ${vendas}" >
+                <td class="one wide field"><span th:text="${venda.id}"></span></td>
+                <td class="three wide field"><span th:text="${venda.dataVenda}"></span></td>
+                <td class="three wide field"><span th:text="${venda.cliente.nome}"></span></td>
+                <td class="three wide field"><span th:text="${venda.valor}"></span></td>
+                <td class="three wide field">
+                    <a class="ui primary button" th:href="@{/venda/detalhe/{id}(id=${venda.id})}">Detalhamento</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>

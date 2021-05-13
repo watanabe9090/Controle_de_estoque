@@ -13,9 +13,13 @@ public class ItemVendido {
     @Id @GeneratedValue
     private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "item_estocado", referencedColumnName = "id")
     private ItemEstocado itemEstocado;
+
+    @ManyToOne
+    @JoinColumn(name = "venda")
+    private Venda venda;
 
 //    private double precoVenda;
     private int quantidade;

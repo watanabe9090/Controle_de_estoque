@@ -19,9 +19,9 @@
                   class="ui form">
                 <h2 class="ui dividing header">Cadastro de Vendas</h2>
 
-                <div class="fields">
-                    <label>Fornecedor</label>
-                    <select th:field="*{venda.cliente}">
+                <h3 class="ui dividing header">Cliente</h3>
+                <div class="field">
+                    <select th:field="*{cliente}">
                         <option th:each="cliente : ${clientes}"
                                 th:value="${cliente.id}"
                                 th:text="${cliente.nome}">
@@ -29,17 +29,89 @@
                     </select>
                 </div>
 
+                <h3 class="ui dividing header">Mercadorias</h3>
+                <div class="field">
+                    <input id="itemEstocadoSearch">
+                    <table class="ui celled table">
+                        <thead>
+                            <tr>
+                                <td class="three wide field">Nome</td>
+                                <td class="three wide field">Marca</td>
+                                <td class="two wide field">Quantidade Estoque</td>
+                                <td class="two wide field">Preço Venda</td>
+                                <td class="two wide field">Adicionar</td>
+                            </tr>
+                        </thead>
+                        <tbody id="itemEstocadoTableBody">
+                        </tbody>
+                    </table>
 
-                <button value="submit" class="ui primary button">Cadastrar</button>
-                <button class="ui button">Cancelar </button>
+                </div>
+
+                <div class="field">
+                    <label>Valor Total</label>
+                    <input type="number" th:field="*{valor}">
+                </div>
+
+
+
+                <button value="submit" class="ui primary button">Realizar Venda</button>
             </form>
         </div>
     </div>
 
 
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+
+
+
+
+        <script th:inline="javascript">
+        /*<![CDATA[*/
+            var itemEstocados = /*[[${itens_estocados}]]*/;
+        /*]]>*/
+        $('#itemEstocadoSearch').on('keyup', function() {
+            var value = $(this).val().toLowerCase();
+            console.log('Value = '+ value);
+            if(value.length > 2) {
+                var data = FilterFunction(value, itemEstocados);
+                rebuildTable(data);
+            } else {
+
+            }
+
+        });
+        function FilterFunction(value, data) {
+            var filteredData = [];
+            for(var i = 0; i < data.length; i++) {
+                var nome = data[i].mercadoria.nome.toLowerCase();
+                var marca = data[i].mercadoria.marca.toLowerCase();
+                if(nome.includes(value) || marca.includes(value)) {
+                    filteredData.push(data[i]);
+                }
+            }
+            return filteredData;
+        }
+
+        function rebuildTable(data) {
+            var tableBody = document.getElementById('itemEstocadoTableBody')
+            tableBody.innerHTML='';
+            for(var i = 0; i < data.length; i++) {
+                var row =`<tr>
+                    <td>${data[i].mercadoria.nome}</td>
+                    <td>${data[i].mercadoria.marca}</td>
+                    <td>${data[i].quantidade}</td>
+                    <td>${data[i].precoVenda}</td>
+                    <td></td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            }
+        }
+
+        </script>
+
+
 </body>
 </html>

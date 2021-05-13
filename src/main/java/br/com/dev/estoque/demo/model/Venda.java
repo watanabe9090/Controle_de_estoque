@@ -18,7 +18,10 @@ public class Venda {
     @ManyToOne
     private Cliente cliente;
 
-    private LocalDateTime dataExpedicao;
+    @OneToMany(mappedBy = "venda", targetEntity = ItemVendido.class)
+    private List<ItemVendido> itemVendidos;
+
+    private LocalDateTime dataVenda;
     private double valor;
 
 
