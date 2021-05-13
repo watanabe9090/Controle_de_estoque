@@ -29,10 +29,6 @@
                     <input type="text" th:field="*{mercadoria.marca}" placeholder="Ex: Marco de Freitas Junior">
                 </div>
                 <div class="eight wide field">
-                    <label>Quantidade</label>
-                    <input type="text" th:field="*{quantidade}" placeholder="Ex: 20">
-                </div>
-                <div class="eight wide field">
                     <label>Fornecedor</label>
                     <select th:field="*{mercadoria.fornecedor}">
                         <option th:each="fornecedor : ${fornecedores}"
@@ -40,6 +36,21 @@
                                 th:text="${fornecedor.nomeFantasia}">
                         </option>
                     </select>
+                </div>
+            </div>
+
+            <div class="fields">
+                <div class="four wide field">
+                    <label>Preço de Compra</label>
+                    <input type="number" th:field="*{precoCompra}" placeholder="Ex: 10,99">
+                </div>
+                <div class="eleven wide field">
+                    <label>Preço de Venda</label>
+                    <input type="number" th:field="*{precoVenda}" placeholder="Ex: 20,99">
+                </div>
+                <div class="eight wide field">
+                    <label>Quantidade</label>
+                    <input type="text" th:field="*{quantidade}" placeholder="Ex: 20">
                 </div>
             </div>
 

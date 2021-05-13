@@ -1,9 +1,7 @@
 package br.com.dev.estoque.demo.controller;
 
 import br.com.dev.estoque.demo.model.*;
-import br.com.dev.estoque.demo.repository.FornecedorRepository;
-import br.com.dev.estoque.demo.repository.ItemEstocadoRepository;
-import br.com.dev.estoque.demo.repository.MercadoriaRepository;
+import br.com.dev.estoque.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +18,14 @@ public class ItemEstocadoController {
     private final ItemEstocadoRepository itemEstocadoDAO;
     private final MercadoriaRepository mercadoriaDAO;
     private final FornecedorRepository fornecedorDAO;
+    private final LocalRepository localRepository;
 
     @Autowired
-    public ItemEstocadoController(ItemEstocadoRepository itemEstocadoDAO, FornecedorRepository fornecedorDAO, MercadoriaRepository mercadoriaDAO) {
+    public ItemEstocadoController(ItemEstocadoRepository itemEstocadoDAO, FornecedorRepository fornecedorDAO, MercadoriaRepository mercadoriaDAO, LocalRepository localRepository) {
         this.itemEstocadoDAO = itemEstocadoDAO;
         this.mercadoriaDAO = mercadoriaDAO;
         this.fornecedorDAO = fornecedorDAO;
+        this.localRepository = localRepository;
     }
 
 
@@ -59,6 +59,7 @@ public class ItemEstocadoController {
         ItemEstocado itemEstocado = itemEstocadoDAO.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Id inválido: " + id));
         model.addAttribute("item_estocado", itemEstocado);
+        model.addAttribute("fornecedores", fornecedorDAO.findAll());
         return "item_estocado_alterar";
     }
 

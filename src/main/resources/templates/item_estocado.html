@@ -45,7 +45,11 @@
                 <td class="one wide field"><span th:text="${item_estocado.id}"></span></td>
                 <td class="three wide field"><span th:text="${item_estocado.mercadoria.nome}"></span></td>
                 <td class="three wide field"><span th:text="${item_estocado.mercadoria.marca}"></span></td>
-                <td class="two wide field"></td>
+                <td class="two wide field">
+                    Preço Compra R$:<span th:text="${item_estocado.precoCompra}"></span>
+                    <br>
+                    Preço Venda R$:<span th:text="${item_estocado.precoVenda}"></span>
+                </td>
                 <td class="one wide field"><span th:text="${item_estocado.quantidade}"></span></td>
                 <td class="three wide field"><span th:text="${item_estocado.mercadoria.fornecedor.nomeFantasia}"></span></td>
                 <td class="three wide field"><span th:text="${item_estocado.mercadoria.descricao}"></span></td>

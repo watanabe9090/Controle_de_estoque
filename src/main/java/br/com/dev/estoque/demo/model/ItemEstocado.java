@@ -26,7 +26,7 @@ public class ItemEstocado implements Serializable {
     @JoinColumn(name = "local", referencedColumnName = "id")
     private Local local;
 
-//    private double precoCompra;
-//    private double precoVendaBase;
+    private double precoCompra;
+    private double precoVenda;
     private int quantidade;
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
-    <title>Cadastrar Marcadoria</title>
+    <title>Alterar Mercadoria</title>
 </head>
 <body>
 
@@ -15,8 +15,8 @@
     <div class="ui segment">
         <h1 class="ui dividing header">Alterar Mercadoria</h1>
         <form action="#"
-              th:object="${itemEstocado}"
-              th:action="@{/item_estocado/edit/{id}(id=${venda.id})}"
+              th:object="${item_estocado}"
+              th:action="@{/item_estocado/edit/{id}(id=${item_estocado.id})}"
               method="post"
               class="ui form">
             <h2 class="ui dividing header">Editar de Mercadorias</h2>
@@ -31,10 +31,6 @@
                     <input type="text" th:field="*{mercadoria.marca}" placeholder="Ex: Marco de Freitas Junior">
                 </div>
                 <div class="eight wide field">
-                    <label>Quantidade</label>
-                    <input type="text" th:field="*{quantidade}" placeholder="Ex: 20">
-                </div>
-                <div class="eight wide field">
                     <label>Fornecedor</label>
                     <select th:field="*{mercadoria.fornecedor}">
                         <option th:each="fornecedor : ${fornecedores}"
@@ -45,6 +41,21 @@
                 </div>
             </div>
 
+
+            <div class="fields">
+                <div class="four wide field">
+                    <label>Preço de Compra</label>
+                    <input type="number" th:field="*{precoCompra}" placeholder="Ex: 10,99">
+                </div>
+                <div class="eleven wide field">
+                    <label>Preço de Venda</label>
+                    <input type="number" th:field="*{precoVenda}" placeholder="Ex: 20,99">
+                </div>
+                <div class="eight wide field">
+                    <label>Quantidade</label>
+                    <input type="text" th:field="*{quantidade}" placeholder="Ex: 20">
+                </div>
+            </div>
 
             <h3 class="ui dividing header">Lote</h3>
             <div class="fields">
@@ -72,6 +83,7 @@
                     <label>Capacidade</label>
                     <input type="text" th:field="*{local.capacidade}" placeholder="Ex: Casa de Doces Bomzão">
                 </div>
+
             </div>
 
             <div class="field">
