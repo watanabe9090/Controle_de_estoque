@@ -10,16 +10,28 @@ INSERT INTO CLIENTE(cpf, rg, nome) VALUES ('328.679.340-01', '49.054.293-1', 'Ma
 INSERT INTO CLIENTE(cpf, rg, nome) VALUES ('851.211.850-49', '24.751.006-3', 'Mazwuwa');
 
 -- Exemplo para inserção de dados na tabela de contatos
-INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('09999-9999', '9999-9999');
+INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('09999-9999', '9999-9999'); -- 1
+INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('02521-3452', '3451-4523'); -- 2
+INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('03342-9999', '1245-2312'); -- 3
+INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('14224-9564', '1241-3467'); -- 4
+INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('07777-6666', '3456-7890'); -- 5
+INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('08888-9999', '4567-8901'); -- 6
 
 
 -- Exemplo para inserção de dados na tabela de endereco
-INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('Barra do Piraí', '27135-630', 'Caixa DÁgua Velha', 'Rua Francisco Franco', '925');
+INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('Barra do Piraí', '27135-630', 'Caixa DÁgua Velha', 'Rua Francisco Franco', '925'); -- 1
+INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('São Paulo', '5422-630', 'São Miguel Paulista', 'Rua Avelino Costa', '220'); -- 2
+INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('São Paulo', '7544-521', 'Vila Ré', 'Rua Meire Ortolano', '28'); -- 3
 
 
 -- Exemplo para inserção de dados na tabela de fornecedor
 --INSERT INTO FORNECEDOR()
 --SELECT contato.id, endereco.id
 --FROM
-
+-- É necessário criar as referências de FK de CONTATO e ENDERECO para cadastrar FORNECEDOR
+-- veja: https://pt.stackoverflow.com/questions/335489/sql-como-faço-um-insert-into-em-uma-tabela-que-tem-fk
+INSERT INTO FORNECEDOR(razao_social, nome_fantasia, email, descricao, contato, endereco)
+VALUES ('Pedigree Fornecimento','Pedigree','pedigree@pedigree.com','Fornecedor Pedigree',3, 2);
+INSERT INTO FORNECEDOR(razao_social, nome_fantasia, email, descricao, contato, endereco)
+VALUES ('DuBom Fornecimento','Rações DuBom','dubom@hotmail.com','Fornecedor Rações DuBom',5, 3);
 
