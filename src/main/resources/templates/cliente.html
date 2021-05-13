@@ -11,22 +11,41 @@
 
     <div class="pusher">
         <div class="ui segment">
-            <form th:action="@{/cliente/cadastro/save}"
-                  th:object="@{cliente}"
-                  method="post"
-                  class="ui form">
-                <h2 class="ui diving header">Cadastro de Clientes</h2>
-                <div class="fields">
-                    <div class="eight wide field">
-                        <label>Nome</label>
-                        <input type="text" th:field="*{nome}" placeholder="Ex: João da Silva Mendes">
-                        <label>CPF</label>
-                        <input type="text" th:field="*{CPF}" placeholder="Ex: João da Silva Mendes">
-                        <label>RG</label>
-                        <input type="text" th:field="*{RG}" placeholder="Ex: 02343254378">
-                    </div>
-                </div>
+            <h1 class="ui dividing header">Clientes</h1>
+            <button class="ui basic button"> <i class="icon user"></i><a href="cliente/cadastro">Adicionar Cliente</a></button>
+            <br>
+            <form method="get" th:action="@{/cliente}" class="ui fluid icon input">
+                <table class="ui celled table">
+                    <thead>
+                    <tr><th>ID</th>
+                        <th>CPF</th>
+                        <th>RG</th>
+                        <th>Nome</th>
+                    </tr></thead>
+                    <tbody>
+                    <tr th:if="${clientes.empty}">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr th:each="cliente : ${clientes}">
+                        <td class="one wide field"><span th:text="${cliente.id}">ID</span></td>
+                        <td class="three wide field"><span th:text="${cliente.CPF}">CPF</span></td>
+                        <td class="two wide field"><span th:text="${cliente.RG}">RG</span></td>
+                        <td class="two wide field"><span th:text="${cliente.nome}">Nome</span></td>
 
+                        <td id="fornecedor-options-buttons" class="two wide field">
+                            <a class="ui mini basic blue button" th:href="@{/cliente/edit/{id}(id=${cliente.id})}">
+                                <i class="edit outline icon"></i>Editar
+                            </a>
+                            <a class="ui mini basic red button" th:href="@{/cliente/delete/{id}(id=${cliente.id})}">
+                                <i class="minus circle icon" ></i>Deletar
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </form>
         </div>
     </div>
