@@ -4,32 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
-    <title>Clientes</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+    <title>Title</title>
 </head>
 <body>
     <div th:replace="fragments/menu.html :: menu"/>
 
+
     <div class="pusher">
         <div class="ui segment">
-            <form th:action="@{/cliente/cadastro/save}"
-                  th:object="@{cliente}"
+            <form th:action="@{/venda/cadastro/save}"
+                  th:object="${venda}"
                   method="post"
                   class="ui form">
-                <h2 class="ui diving header">Cadastro de Clientes</h2>
+                <h2 class="ui dividing header">Cadastro de Vendas</h2>
+
                 <div class="fields">
-                    <div class="eight wide field">
-                        <label>Nome</label>
-                        <input type="text" th:field="*{nome}" placeholder="Ex: João da Silva Mendes">
-                        <label>CPF</label>
-                        <input type="text" th:field="*{CPF}" placeholder="Ex: João da Silva Mendes">
-                        <label>RG</label>
-                        <input type="text" th:field="*{RG}" placeholder="Ex: 02343254378">
-                    </div>
+                    <label>Fornecedor</label>
+                    <select th:field="*{venda.cliente}">
+                        <option th:each="cliente : ${clientes}"
+                                th:value="${cliente.id}"
+                                th:text="${cliente.nome}">
+                        </option>
+                    </select>
                 </div>
 
+
+                <button value="submit" class="ui primary button">Cadastrar</button>
+                <button class="ui button">Cancelar </button>
             </form>
         </div>
     </div>
+
+
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>

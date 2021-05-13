@@ -13,13 +13,13 @@ import javax.persistence.Id;
 @NoArgsConstructor @AllArgsConstructor
 public class Endereco {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String rua;
+    private String rua; // CEP
     private String numero;
-    private String bairro;
-    private String cidade;
+    private String bairro; // CEP
+    private String cidade; // CEP
     private String cep;
 
 }

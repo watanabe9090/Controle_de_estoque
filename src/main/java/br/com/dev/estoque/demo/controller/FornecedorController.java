@@ -1,6 +1,7 @@
 package br.com.dev.estoque.demo.controller;
 
 import br.com.dev.estoque.demo.model.Fornecedor;
+import br.com.dev.estoque.demo.model.Local;
 import br.com.dev.estoque.demo.model.util.Contato;
 import br.com.dev.estoque.demo.model.util.Endereco;
 import br.com.dev.estoque.demo.repository.FornecedorRepository;
@@ -11,12 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "fornecedor")
-public class
-FornecedorController {
+public class FornecedorController {
 
     private final FornecedorRepository fornecedorDAO;
 
@@ -29,6 +30,13 @@ FornecedorController {
                         new Endereco(12903, "AKSDH", "asdas d", "asd ads ", "1231 ", "020-9239")
                 )
         );
+        this.fornecedorDAO.save(
+                new Fornecedor(10, "Marcos", "ChurrosM", "marcosemai@ghotma", "microemprendedor",
+                        new Contato(123, "91111-4444", "1234-5678"),
+                        new Endereco(12903, "AKSDH", "asdas d", "asd ads ", "1231 ", "020-9239")
+                )
+        );
+
     }
 
     @GetMapping
@@ -49,11 +57,13 @@ FornecedorController {
     }
 
 
+
     @PostMapping("cadastro/save")
     public String saveFornecedor(@ModelAttribute Fornecedor fornecedor,  BindingResult result, Model model) {
         System.out.println(fornecedor.toString());
         fornecedorDAO.save(fornecedor);
         return "redirect:/fornecedor";
+
     }
     /*
     *   Seção para atualização do fornecedor

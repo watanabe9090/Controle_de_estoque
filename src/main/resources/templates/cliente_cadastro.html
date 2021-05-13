@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <title>Cadastro de Clientes</title>
+</head>
+<body>
+<div th:replace="fragments/menu.html :: menu"/>
+
+<div class="pusher">
+    <div class="ui segment">
+        <form th:action="@{/cliente/cadastro/save}"
+              th:object="${cliente}"
+              method="post"
+              class="ui form">
+            <h2 class="ui diving header">Cadastro de Clientes</h2>
+            <div class="fields">
+
+                <div class="eight wide field">
+                    <label>Nome</label>
+                    <input type="text" th:field="*{nome}" placeholder="Ex: João da Silva Mendes">
+                </div>
+
+                <div class="eight wide field">
+                    <label>CPF</label>
+                    <input type="text" th:field="*{CPF}" placeholder="Ex: João da Silva Mendes">
+                </div>
+
+                <div class="eight wide field">
+                    <label>RG</label>
+                    <input type="text" th:field="*{RG}" placeholder="Ex: 02343254378">
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+</body>
+</html>

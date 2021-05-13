@@ -1,5 +1,6 @@
 package br.com.dev.estoque.demo.model;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,12 +17,13 @@ public class Local implements Serializable {
     @GeneratedValue
     private long id;
 
-//    @OneToMany
-//    @JoinColumn(name = "local")
-//    private List<ItemEstocado> itemEstocados;
-
+    @NotNull
     private String cep;
+
+    @NotNull
     private String setor;
+
+    @NotNull
     private String capacidade;
 
 }

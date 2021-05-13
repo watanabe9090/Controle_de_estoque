@@ -11,15 +11,14 @@
     <div th:replace="fragments/menu.html :: menu"/>
 
     <div class="pusher">
-        <a class="ui basic button" href="item_estocado/cadastro"><i class="icon user"></i>Adicionar Mercadoria</a>
-        <button class="ui basic button"> <i class="minus circle icon"></i></i>Remover Mercadoria</button>
+        <h1 class="ui dividing header">Mercadorias</h1>
+        <a class="ui basic button" href="/item_estocado/cadastro"><i class="icon user"></i>Adicionar Mercadoria</a>
         <br>
-        <div class="ui fluid icon input">
-            <input type="text" placeholder="Pesquisar Mercadoria">
-            <i class="search icon"></i>
-        </div>
+        <form method="get" class="ui fluid icon input" th:action="@{/item_estocado}">
+            <input type="text" style="margin-right: 5px; margin-top:10px;" placeholder="Pesquisar Mercadoria">
+            <button class="ui primary mini button" type="submit"><i style="font-size: 20px" class="search icon"></i></button>
+        </form>
         <br>
-        <button class="ui basic button"> <i class="sort alphabet down icon"></i>Organizar</button>
         <table class="ui celled table">
             <thead>
             <tr><th>ID</th>
@@ -30,9 +29,14 @@
                 <th>Fornecedor</th>
                 <th>Descrição</th>
                 <th>Opções</th>
-            </tr></thead>
+            </tr>
+            </thead>
             <tbody>
-            <tr th:if="${item_estocado.empty}">
+            <tr th:if="${itens_estocados.empty}">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -45,7 +49,14 @@
                 <td class="one wide field"><span th:text="${item_estocado.quantidade}"></span></td>
                 <td class="three wide field"><span th:text="${item_estocado.mercadoria.fornecedor.nomeFantasia}"></span></td>
                 <td class="three wide field"><span th:text="${item_estocado.mercadoria.descricao}"></span></td>
-                <td><span><i class="address card outline icon"></i></span><span><i class="minus circle icon"></i></span></td>
+                <td class="two wide field">
+                    <a class="ui mini basic blue button" th:href="@{/item_estocado/edit/{id}(id=${item_estocado.id})}">
+                        <i class="edit outline icon"></i>Editar
+                    </a>
+                    <a class="ui mini basic red button" th:href="@{/item_estocado/delete/{id}(id=${item_estocado.id})}">
+                        <i class="minus circle icon" ></i>Deletar
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>

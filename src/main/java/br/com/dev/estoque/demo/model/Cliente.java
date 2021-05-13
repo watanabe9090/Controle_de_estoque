@@ -12,14 +12,11 @@ import java.util.List;
 @NoArgsConstructor @AllArgsConstructor
 public class Cliente {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String nome;
     private String CPF;
     private String RG;
-
-
-//    private List<Contato> contatos;
 
 }

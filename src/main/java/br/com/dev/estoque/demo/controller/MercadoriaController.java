@@ -23,24 +23,6 @@ public class MercadoriaController {
     @Autowired
     public MercadoriaController(MercadoriaRepository mercadoriaDAO) {
         this.mercadoriaDAO = mercadoriaDAO;
-//        this.mercadoriaDAO.save(
-//                new Mercadoria(1,
-//                new Fornecedor(,
-//                        new Contato(123, "91111-4444", "1234-5678"),
-//                        new Endereco(12903, "AKSDH", "asdas d", "asd ads ", "1231 ", "020-9239")
-//                ),
-//                "Ração Magnus Adulto Frango",
-//                "Margnus",
-//                "Frango Adulto"));
-
-//            this.mercadoriaDAO.save(new Mercadoria(10,
-//                    new Fornecedor(11, "Marcos", "ChurrosM", "marcosemai@ghotma", "microemprendedor",
-//                            new Contato(12, "91111-4444", "1234-5678"),
-//                            new Endereco(13, "AKSDH", "asdas d", "asd ads ", "1231 ", "020-9239")
-//                    ), "ChurrosA", "ROyalChurros", "CHurros do bão", 10.50, 20.99, 5, 30)
-//            );
-
-
     }
 
 

@@ -14,7 +14,7 @@ public class Mercadoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fornecedor", referencedColumnName = "id")
     private Fornecedor fornecedor;
 
