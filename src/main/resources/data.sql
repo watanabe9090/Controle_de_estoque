@@ -32,6 +32,17 @@ INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('São Paulo', '75
 -- veja: https://pt.stackoverflow.com/questions/335489/sql-como-faço-um-insert-into-em-uma-tabela-que-tem-fk
 INSERT INTO FORNECEDOR(razao_social, nome_fantasia, email, descricao, contato, endereco)
 VALUES ('Pedigree Fornecimento','Pedigree','pedigree@pedigree.com','Fornecedor Pedigree',3, 2);
+
+
+
+-- Cadastro da Mercadoria 1
 INSERT INTO FORNECEDOR(razao_social, nome_fantasia, email, descricao, contato, endereco)
 VALUES ('DuBom Fornecimento','Rações DuBom','dubom@hotmail.com','Fornecedor Rações DuBom',5, 3);
-
+INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('76913-559', '13B', '10 Toneladas');
+INSERT INTO LOTE(data_fabricacao, data_vencimento)
+VALUES( parsedatetime('2020-10-17', 'yyyy-MM-dd'),parsedatetime('2022-10-17', 'yyyy-MM-dd') );
+INSERT INTO MERCADORIA(nome, marca, descricao, fornecedor)
+VALUES ('Magnus Adulto Frango e Vegetais', 'Magnus', 'Ração Seca, com grãos médios, com embalagens de 15kg a 25kg',1);
+INSERT INTO ITEM_ESTOCADO(preco_compra, preco_venda, quantidade, local, lote, mercadoria)
+VALUES (10.90, 11.90, 20, 1, 1, 1);
+----------------------------------------------------------------------------------------------------------------------
