@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Entity @Data
 @NoArgsConstructor @AllArgsConstructor
 public class ItemEstocado implements Serializable {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne(cascade = CascadeType.ALL)

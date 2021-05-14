@@ -16,17 +16,40 @@
             <form th:action="@{/venda/cadastro/save}"
                   th:object="${venda}"
                   method="post"
+                  id="formularioVenda"
                   class="ui form">
                 <h2 class="ui dividing header">Cadastro de Vendas</h2>
 
                 <h3 class="ui dividing header">Cliente</h3>
                 <div class="field">
-                    <select th:field="*{cliente}">
+                    <select th:field="*{cliente.id}">
                         <option th:each="cliente : ${clientes}"
                                 th:value="${cliente.id}"
                                 th:text="${cliente.nome}">
                         </option>
                     </select>
+                </div>
+
+                <h3 class="ui dividing header">Carrinho de Venda</h3>
+                <div class="field">
+                    <table class="ui celled table">
+                        <thead>
+                            <tr>
+                                <td class="three wide field">Nome</td>
+                                <td class="three wide field">Marca</td>
+                                <td class="two wide field">Preço Unitário</td>
+                                <td class="two wide field">Quantidade Adicionada</td>
+                                <td class="two wide field">Opção</td>
+                            </tr>
+                        </thead>
+                        <tbody id="carrinhoTableBody">
+                            <tr th:each="item, itemStat: ${venda.itemVendidos}">
+                                <input type="hidden" th:field="*{itemVendidos[__${itemStat.index}__].itemEstocado.id}" \>
+                                <td th:text="${item.itemEstocado.mercadoria.nome}"></td>
+                                <td>I vai</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <h3 class="ui dividing header">Mercadorias</h3>
@@ -35,11 +58,12 @@
                     <table class="ui celled table">
                         <thead>
                             <tr>
-                                <td class="three wide field">Nome</td>
-                                <td class="three wide field">Marca</td>
-                                <td class="two wide field">Quantidade Estoque</td>
-                                <td class="two wide field">Preço Venda</td>
-                                <td class="two wide field">Adicionar</td>
+                                <td class="six wide field">Nome</td>
+                                <td class="four wide field">Marca</td>
+                                <td class="one wide field">Quantidade Estoque</td>
+                                <td class="one wide field">Preço Venda</td>
+                                <td class="one wide field">Quantidade</td>
+                                <td class="three wide field">Adicionar</td>
                             </tr>
                         </thead>
                         <tbody id="itemEstocadoTableBody">
@@ -61,25 +85,20 @@
     </div>
 
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
-
-
 
 
         <script th:inline="javascript">
         /*<![CDATA[*/
             var itemEstocados = /*[[${itens_estocados}]]*/;
-        /*]]>*/
+
         $('#itemEstocadoSearch').on('keyup', function() {
             var value = $(this).val().toLowerCase();
             console.log('Value = '+ value);
             if(value.length > 2) {
                 var data = FilterFunction(value, itemEstocados);
                 rebuildTable(data);
-            } else {
-
             }
 
         });
@@ -104,12 +123,39 @@
                     <td>${data[i].mercadoria.marca}</td>
                     <td>${data[i].quantidade}</td>
                     <td>${data[i].precoVenda}</td>
-                    <td></td>
+                    <td><input type="number" text="0"/></td>
+                    <td><a onclick="adicionarItem(${data[i].id})" class="ui blue button">Adicionar</a></td>
                 </tr>`;
                 tableBody.innerHTML += row;
             }
         }
+        function adicionarItem(id) {
+            $('#formularioVenda').attr('action', `/venda/cadastro/addItem/${id}`);
+            $('#formularioVenda').submit();
 
+
+            /*
+            console.log(itemEstocadoJSON);
+            var carrinhoTableBody = document.getElementById('carrinhoTableBody');
+            var row =`<tr>
+                    <td th:field={}>${nome}</td>
+                    <td>${marca}</td>
+                    <td>${preco}</td>
+                    <td>${quantidade}</td>
+                    <td><input type="number"></td>
+                    <td><a class="negative ui button">Excluir</a></td>
+                </tr>`;
+            carrinhoTableBody.innerHTML += row;
+            */
+        }
+
+        function removerItemCarrinho(item) {
+            var carrinhoTableBody = document.getElementById('carrinhoTableBody');
+        }
+
+        function atualizarValorTotal() {
+        }
+        /*]]>*/
         </script>
 
 

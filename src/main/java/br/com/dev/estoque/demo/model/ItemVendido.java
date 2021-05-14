@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class ItemVendido {
 
     @Id @GeneratedValue
-    private long id;
+    private Long id;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "item_estocado", referencedColumnName = "id")
@@ -21,6 +21,6 @@ public class ItemVendido {
     @JoinColumn(name = "venda")
     private Venda venda;
 
-//    private double precoVenda;
+    private double precoVenda;
     private int quantidade;
 }
