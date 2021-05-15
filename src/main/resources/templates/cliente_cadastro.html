@@ -13,6 +13,7 @@
     <div class="ui segment">
         <form th:action="@{/cliente/cadastro/save}"
               th:object="${cliente}"
+              onsubmit="return(validaCPF())"
               method="post"
               class="ui form">
             <h2 class="ui diving header">Cadastro de Clientes</h2>
@@ -20,17 +21,18 @@
 
                 <div class="eight wide field">
                     <label>Nome</label>
-                    <input type="text" th:field="*{nome}" placeholder="Ex: João da Silva Mendes">
+                    <input type="text" th:field="*{nome}" placeholder="Ex: João da Silva Mendes" required>
                 </div>
 
                 <div class="eight wide field">
                     <label>CPF</label>
-                    <input type="text" oninput="mascaraCPF(this)" th:field="*{CPF}" placeholder="Ex: 542.123.542-25">
+                    <input id="cpf" type="text" oninput="mascaraCPF(this)" th:field="*{CPF}" placeholder="Ex: 542.123.542-25" required>
+                    <p id="validadeCPF"></p>
                 </div>
 
                 <div class="eight wide field">
                     <label>RG</label>
-                    <input type="text" oninput="mascaraRG(this)" th:field="*{RG}" placeholder="Ex: 023.432.543-78">
+                    <input type="text" oninput="mascaraRG(this)" th:field="*{RG}" placeholder="Ex: 023.432.543-78" required>
                 </div>
             </div>
 
@@ -46,29 +48,60 @@
     
     function mascaraCPF(i){
    var v = i.value;
-   
+
    if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
       i.value = v.substring(0, v.length-1);
       return;
    }
-   
+
    i.setAttribute("maxlength", "14");
    if (v.length == 3 || v.length == 7) i.value += ".";
    if (v.length == 11) i.value += "-";
 
-}
+    }
     function mascaraRG(i){
    var v = i.value;
-   
+
    if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
       i.value = v.substring(0, v.length-1);
       return;
    }
-   
+
    i.setAttribute("maxlength", "12");
    if (v.length == 2 || v.length == 6) i.value += ".";
    if (v.length == 10) i.value += "-";
 
+}
+
+function validaCPF() {
+    let strCPF = document.getElementById("cpf").value;
+    strCPF  = RetiraMascara(strCPF);
+    console.log(strCPF);
+    alert(strCPF);
+    var Soma;
+    var Resto;
+    Soma = 0;   
+    
+    if (strCPF == "00000000000") return false;
+    for (i=1; i<=9; i++)
+	    Soma += parseInt(strCPF.substring(i-1, i)) * (11 - i); 
+    Resto = (Soma * 10) % 11;
+    if ((Resto == 10) || (Resto == 11)) 
+	    Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10)) )
+	    return false;
+	Soma = 0;
+    for (i = 1; i <= 10; i++)
+       Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+    if ((Resto == 10) || (Resto == 11)) 
+	    Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11) ) )
+        return false;
+    return true;
+}
+function RetiraMascara(strCPF){
+    return strCPF.value.replace(/\D/g, '');
 }
 </script>
 </body>
