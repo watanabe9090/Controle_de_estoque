@@ -24,19 +24,6 @@ public class FornecedorController {
     @Autowired
     public FornecedorController(FornecedorRepository fornecedorDAO) {
         this.fornecedorDAO = fornecedorDAO;
-        this.fornecedorDAO.save(
-                new Fornecedor(10, "Marcos", "ChurrosM", "marcosemai@ghotma", "microemprendedor",
-                        new Contato(123, "91111-4444", "1234-5678"),
-                        new Endereco(12903, "AKSDH", "asdas d", "asd ads ", "1231 ", "020-9239")
-                )
-        );
-        this.fornecedorDAO.save(
-                new Fornecedor(10, "Marcos", "ChurrosM", "marcosemai@ghotma", "microemprendedor",
-                        new Contato(123, "91111-4444", "1234-5678"),
-                        new Endereco(12903, "AKSDH", "asdas d", "asd ads ", "1231 ", "020-9239")
-                )
-        );
-
     }
 
     @GetMapping
@@ -87,9 +74,6 @@ public class FornecedorController {
     }
 
 
-    /*
-     *   Seção para deleção do fornecedor
-     */
     @GetMapping("delete/{id}")
     public String deleteFornecedor(@PathVariable("id") long id, Model model) {
         Fornecedor fornecedor = fornecedorDAO.findById(id)

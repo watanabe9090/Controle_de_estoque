@@ -19,7 +19,6 @@ public class ClienteController {
     @Autowired
     public ClienteController(ClienteRepository clienteDAO) {
         this.clienteDAO = clienteDAO;
-        this.clienteDAO.save(new Cliente(1, "Jorge","999999999-99","053623264-25" ));
     }
 
     @GetMapping

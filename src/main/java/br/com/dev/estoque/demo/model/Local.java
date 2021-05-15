@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor @AllArgsConstructor
 public class Local implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull

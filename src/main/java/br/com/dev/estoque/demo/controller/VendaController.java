@@ -1,7 +1,9 @@
 package br.com.dev.estoque.demo.controller;
 
+import br.com.dev.estoque.demo.dto.AddItemVendaDTO;
 import br.com.dev.estoque.demo.model.Fornecedor;
 import br.com.dev.estoque.demo.model.ItemEstocado;
+import br.com.dev.estoque.demo.model.ItemVendido;
 import br.com.dev.estoque.demo.model.Venda;
 import br.com.dev.estoque.demo.repository.ClienteRepository;
 import br.com.dev.estoque.demo.repository.ItemEstocadoRepository;
@@ -12,7 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("venda")
@@ -37,12 +42,39 @@ public class VendaController {
         return "venda";
     }
 
+
     @GetMapping("cadastro")
     public String getVendaCadastroPage(@ModelAttribute Venda venda, Model model) {
         model.addAttribute("clientes", clienteRepository.findAll());
         model.addAttribute("itens_estocados", itemEstocadoRepository.findAll());
         return "venda_cadastro";
     }
+
+    @PostMapping("cadastro/addItem/{id}")
+    public String adicionarItem(@PathVariable("id") BigInteger id, @ModelAttribute AddItemVendaDTO addItemVendaDTO, Model model) {
+        System.out.println(id);
+
+//        System.out.println(venda.toString());
+//        Optional<ItemEstocado> i = itemEstocadoRepository.findById(id.longValue());
+//        ItemVendido iv = new ItemVendido(null, i.get(),venda,10);
+//
+//        if (venda.getItemVendidos() == null)
+//            venda.setItemVendidos(new ArrayList<>());
+//
+//        venda.getItemVendidos().add(iv);
+
+//        return getVendaCadastroPage(venda, model);
+        return "";
+    }
+
+    @PostMapping("cadastro/save")
+    public String saveVenda(@ModelAttribute Venda venda) {
+        venda.setDataVenda(LocalDateTime.now());
+        vendaRepository.save(venda);
+        return "redirect:/venda";
+    }
+
+
 
     @GetMapping("detalhe/{id}")
     public String getVendaDetalahmentoPage(@PathVariable("id") long id, Model model) {
@@ -53,10 +85,4 @@ public class VendaController {
         return "venda_detalhe";
     }
 
-    @PostMapping("cadastro/save")
-    public String saveVenda(@ModelAttribute Venda venda) {
-        venda.setDataVenda(LocalDateTime.now());
-        vendaRepository.save(venda);
-        return "redirect:/venda";
-    }
 }
