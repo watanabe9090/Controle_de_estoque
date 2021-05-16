@@ -13,17 +13,17 @@
 
     <div class="pusher">
         <div class="ui segment">
-            <h1 class="ui dividing header">Alterar Cadastro</h1>
+            <h1 class="ui dividing header">Alterar Fornecedor</h1>
             <form action="#"
                   th:object="${fornecedor}"
                   th:action="@{/fornecedor/edit/{id}(id=${fornecedor.id})}"
                   method="post"
                   class="ui form">
 
-                <div class="fields">
+                  <div class="fields">
                     <div class="eight wide field">
                         <label>Nome Fantasia</label>
-                        <input type="text" th:field="*{nomeFantasia}" placeholder="Ex: Casa de Doces Bomzão">
+                        <input type="text" th:field="*{nomeFantasia}" placeholder="Ex: Casa de Doces Bonzão">
                     </div>
                     <div class="eight wide field">
                         <label>Razão Social</label>
@@ -36,26 +36,26 @@
                 <div class="fields">
                     <div class="four wide field">
                         <label>CEP</label>
-                        <input type="text" th:field="*{endereco.cep}" placeholder="Ex: Casa de Doces Bomzão">
+                        <input type="text" th:field="*{endereco.cep}" placeholder="Ex: 07254-071">
                     </div>
-                    <div class="eleven wide field">
+                    <div class="ten wide field">
                         <label>Rua</label>
-                        <input type="text" th:field="*{endereco.rua}" placeholder="Ex: Casa de Doces Bomzão">
+                        <input type="text" th:field="*{endereco.rua}" placeholder="Ex: Rua das Laranjeiras">
                     </div>
                     <div class="two wide field">
-                        <label>Numero</label>
-                        <input type="text" th:field="*{endereco.numero}" placeholder="Ex: Casa de Doces Bomzão">
+                        <label>Número</label>
+                        <input type="text" th:field="*{endereco.numero}" placeholder="Ex: 280">
                     </div>
                 </div>
 
                 <div class="fields">
                     <div class="ten wide field">
                         <label>Bairro</label>
-                        <input type="text" th:field="*{endereco.bairro}" placeholder="Ex: Casa de Doces Bomzão">
+                        <input type="text" th:field="*{endereco.bairro}" placeholder="Ex: Aclimação">
                     </div>
                     <div class="six wide field">
                         <label>Cidade</label>
-                        <input type="text" th:field="*{endereco.cidade}" placeholder="Ex: Casa de Doces Bomzão">
+                        <input type="text" th:field="*{endereco.cidade}" placeholder="Ex: São Paulo">
                     </div>
                 </div>
 
@@ -63,21 +63,21 @@
                 <div class="fields">
                     <div class="eight wide field">
                         <label>E-mail</label>
-                        <input type="text" th:field="*{email}" placeholder="Ex: marcofreitas@hotmail.com">
+                        <input type="text" th:field="*{email}" placeholder="Ex: bonzaodoces@hotmail.com">
                     </div>
                     <div class="four wide field">
                         <label>Telefone Celular</label>
-                        <input class="field" type="text" th:field="*{contato.telefoneCelular}" placeholder="Ex: marcofreitas@hotmail.com">
+                        <input class="field" type="text" th:field="*{contato.telefoneCelular}" placeholder="(11) 92423-2342">
                     </div>
                     <div class="four wide field">
                         <label>Telefone fixo</label>
-                        <input class="field" type="text" th:field="*{contato.telefoneFixo}" placeholder="Ex: marcofreitas@hotmail.com">
+                        <input class="field" type="text" th:field="*{contato.telefoneFixo}" placeholder="Ex: (11) 4523-5428">
                     </div>
                 </div>
 
                 <div class="field">
                     <label>Descrição</label>
-                    <textarea th:field="*{descricao}"></textarea>
+                    <textarea th:field="*{descricao}" placeholder="Comércio atacadista de doces."></textarea>
                 </div>
 
                 <button value="submit" class="ui primary button">Atualizar</button>

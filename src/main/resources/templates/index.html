@@ -3,15 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+    <!-- <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/> -->
+    <link rel="stylesheet" href="index.css">
+    <title>SwiftLog</title>
 </head>
 <body>
 
     <div th:replace="fragments/menu.html :: menu"> </div>
+    <div id="div-content" class="pusher">
+        <div class="ui dividing header">
+            <div id="div-title" class="inner-div">
+                <h1 id="-swiftlog-software-gerenciador-de-estoque-">Swiftlog - Software Gerenciador de Estoque</h1>
+            </div>
 
+            <hr>
 
-    <div class="pusher">
+            <div id="div-int" class="inner-div">
+                <h2 id="-introducao" class="ui diving header">Introdução</h2>
+                <p class="fields">Software feito com Spring Boot, utilizando o banco de dados H2.</p>
+            </div>
 
+            <hr>
+
+            <div id="div-desc" class="inner-div">
+                <div class="fields">
+                    <h2 id="-descricao" class="ui diving header">Descrição</h2>
+                    <p>O projeto busca contemplar principalmente os processos de venda do comércio Mundo Animal Rações, voltado para o ramo
+                        de pet shop.</p>
+                </div>
+            </div>
+
+            <hr>
+            <div id="div-map" class="inner-div">
+                <h2 id="-mapa-do-site-" class="ui diving header">Funcionalidades</h2>
+            </div>
+
+            <hr>
+
+            <div id="div-author" class="inner-div">
+                <h2 id="-autores-" class="ui diving header">Autores</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Integrantes</th>
+                        <th style="text-align:center">RA</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Antonio Vinicius</td>
+                        <td style="text-align:center">192119-77</td>
+                    </tr>
+                    <tr>
+                        <td>Eduardo Augusto</td>
+                        <td style="text-align:center">192072-12</td>
+                    </tr>
+                    <tr>
+                        <td>Gabriel Francischini</td>
+                        <td style="text-align:center">192071-14</td>
+                    </tr>
+                    <tr>
+                        <td>Marco Aurelio Minozzo</td>
+                        <td style="text-align:center">191008-42</td>
+                    </tr>
+                    <tr>
+                        <td>Yuri Takae Watanabe</td>
+                        <td style="text-align:center">192142-62</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

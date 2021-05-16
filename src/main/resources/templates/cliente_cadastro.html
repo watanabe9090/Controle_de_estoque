@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
-    <title>Cadastro de Clientes</title>
+    <title>Cadastrar Cliente</title>
 </head>
 <body>
 <div th:replace="fragments/menu.html :: menu"/>
@@ -13,6 +13,7 @@
     <div class="ui segment">
         <form th:action="@{/cliente/cadastro/save}"
               th:object="${cliente}"
+              th:onsubmit="return validaCPF()"
               method="post"
               class="ui form">
             <h2 class="ui diving header">Cadastro de Clientes</h2>
@@ -20,95 +21,31 @@
 
                 <div class="eight wide field">
                     <label>Nome</label>
-                    <input name="nome" type="text" th:field="*{nome}" placeholder="Ex: João da Silva Mendes">
+                    <input type="text" th:field="*{nome}" placeholder="Ex: João da Silva Mendes" th:required="required">
                 </div>
 
                 <div class="eight wide field">
                     <label>CPF</label>
-                    <input name="cpf" type="text" oninput="mascaraCPF(this)" th:field="*{CPF}" placeholder="Ex: 542.123.542-25">
+                    <input id="cpf" type="text" th:oninput="mascaraCPF(this)" th:field="*{CPF}" placeholder="Ex: 542.123.542-25" th:required="required">
+                    <p id="validadeCPF"></p>
                 </div>
 
                 <div class="eight wide field">
                     <label>RG</label>
-                    <input name="rg" type="text" oninput="mascaraRG(this)" th:field="*{RG}" placeholder="Ex: 023.432.543-78">
+                    <input type="text" th:oninput="mascaraRG(this)" th:field="*{RG}" placeholder="Ex: 023.432.543-78" th:required="required">
                 </div>
             </div>
 
             <button value="submit" style="margin-top: 10px;" class="ui primary button">Cadastrar</button>
             <button class="ui button">Cancelar </button>
-            <div class="ui error message"></div>
         </form>
     </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
-<script>
-    
-    function mascaraCPF(i){
-   var v = i.value;
-   
-   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
-      i.value = v.substring(0, v.length-1);
-      return;
-   }
-   
-   i.setAttribute("maxlength", "14");
-   if (v.length == 3 || v.length == 7) i.value += ".";
-   if (v.length == 11) i.value += "-";
 
-}
-    function mascaraRG(i){
-   var v = i.value;
-   
-   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
-      i.value = v.substring(0, v.length-1);
-      return;
-   }
-   
-   i.setAttribute("maxlength", "12");
-   if (v.length == 2 || v.length == 6) i.value += ".";
-   if (v.length == 10) i.value += "-";
-
-}
-</script>
-
-    <script>
-        $('.ui.form')
-          .form({
-            fields: {
-              nome : {
-                identifier: 'nome',
-                rules: [
-                  {
-                    type   : 'empty',
-                    prompt : 'Por favor escreva seu nome'
-                  }
-                ]
-              },
-              cpf : {
-                identifier: 'cpf',
-                rules: [
-                  {
-                    type   : 'empty',
-                    prompt : 'Por favor identifique seu cpf'
-                  }
-                ]
-              },
-              rg : {
-                identifier: 'rg',
-                rules: [
-                  {
-                    type   : 'empty',
-                    prompt : 'Por favor identifique seu rg'
-                  }
-                ]
-              }
-            }
-          });
-
-    </script>
-
+<script type="text/javascript" th:src="@{/js/validacaocliente.js/}"></script>
 
 </body>
 </html>
