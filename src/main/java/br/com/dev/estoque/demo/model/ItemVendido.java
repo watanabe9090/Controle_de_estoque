@@ -21,7 +21,7 @@ public class ItemVendido {
     private ItemEstocado itemEstocado;
 
     @ManyToOne
-    @JoinColumn(name = "venda_id")
+    @JoinColumn(name = "venda", referencedColumnName = "id")
     private Venda venda;
 
     private double precoVenda;

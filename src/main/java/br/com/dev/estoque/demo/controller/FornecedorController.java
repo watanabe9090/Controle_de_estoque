@@ -5,7 +5,6 @@ import br.com.dev.estoque.demo.model.Local;
 import br.com.dev.estoque.demo.model.util.Contato;
 import br.com.dev.estoque.demo.model.util.Endereco;
 import br.com.dev.estoque.demo.repository.FornecedorRepository;
-import br.com.dev.estoque.demo.service.FornecedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

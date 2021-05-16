@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -59,18 +60,21 @@ public class VendaController {
 
 
     @PostMapping("cadastro/save")
+    @Transactional
     public String saveVenda(@ModelAttribute Venda venda) {
         venda.setDataVenda(LocalDateTime.now());
-
+        // Salva as quantias retiradas
         for(ItemVendido itemVendido :venda.getItensVendidos()) {
             ItemEstocado itemEstocado = itemVendido.getItemEstocado();
             itemEstocado.setQuantidade(itemEstocado.getQuantidade() - itemVendido.getQuantidade());
             itemEstocadoRepository.save(itemEstocado);
         }
-
-        venda.getItensVendidos().stream().forEach(itemVendido -> {itemVendido.setVenda(venda);});
         vendaRepository.save(venda);
-        System.out.println(venda.toString());
+
+        venda.getItensVendidos()
+                .forEach(itemVendido -> itemVendido.setVenda(venda));
+
+        //System.out.println(venda.toString());
         return "redirect:/venda";
     }
 
