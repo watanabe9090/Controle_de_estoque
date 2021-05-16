@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
-    <title>Title</title>
+    <title>Cadastro de Fornecedores</title>
 </head>
 <body>
 
@@ -22,11 +22,13 @@
                 <div class="fields">
                     <div class="eight wide field">
                         <label>Nome Fantasia</label>
-                        <input type="text" th:field="*{nomeFantasia}" placeholder="Ex: Casa de Doces Bomzão">
+                        <input type="text" th:field="*{nomeFantasia}" placeholder="Ex: Casa de Doces Bonzão"
+                               th:required="required">
                     </div>
                     <div class="eight wide field">
                         <label>Razão Social</label>
-                        <input type="text" th:field="*{razaoSocial}" placeholder="Ex: Marco de Freitas Junior">
+                        <input type="text" th:field="*{razaoSocial}" placeholder="Ex: Marco de Freitas Junior"
+                               th:required="required">
                     </div>
                 </div>
 
@@ -35,26 +37,31 @@
                 <div class="fields">
                     <div class="four wide field">
                         <label>CEP</label>
-                        <input type="text" th:field="*{endereco.cep}" placeholder="Ex: Casa de Doces Bomzão">
+                        <input type="text" th:field="*{endereco.cep}" placeholder="Ex: 07254-071"
+                               th:required="required">
                     </div>
-                    <div class="eleven wide field">
+                    <div class="ten wide field">
                         <label>Rua</label>
-                        <input type="text" th:field="*{endereco.rua}" placeholder="Ex: Casa de Doces Bomzão">
+                        <input type="text" th:field="*{endereco.rua}" placeholder="Ex: Rua das Laranjeiras"
+                               th:required="required">
                     </div>
                     <div class="two wide field">
-                        <label>Numero</label>
-                        <input type="text" th:field="*{endereco.numero}" placeholder="Ex: Casa de Doces Bomzão">
+                        <label>Número</label>
+                        <input type="text" th:field="*{endereco.numero}" placeholder="Ex: 280"
+                               th:required="required">
                     </div>
                 </div>
 
                 <div class="fields">
                     <div class="ten wide field">
                         <label>Bairro</label>
-                        <input type="text" th:field="*{endereco.bairro}" placeholder="Ex: Casa de Doces Bomzão">
+                        <input type="text" th:field="*{endereco.bairro}" placeholder="Ex: Aclimação"
+                               th:required="required">
                     </div>
                     <div class="six wide field">
                         <label>Cidade</label>
-                        <input type="text" th:field="*{endereco.cidade}" placeholder="Ex: Casa de Doces Bomzão">
+                        <input type="text" th:field="*{endereco.cidade}" placeholder="Ex: São Paulo"
+                               th:required="required">
                     </div>
                 </div>
 
@@ -62,21 +69,24 @@
                 <div class="fields">
                     <div class="eight wide field">
                         <label>E-mail</label>
-                        <input type="text" th:field="*{email}" placeholder="Ex: marcofreitas@hotmail.com">
+                        <input type="text" th:field="*{email}" placeholder="Ex: bonzaodoces@hotmail.com"
+                               th:required="required">
                     </div>
                     <div class="four wide field">
                         <label>Telefone Celular</label>
-                        <input class="field" type="text" th:field="*{contato.telefoneCelular}" placeholder="Ex: marcofreitas@hotmail.com">
+                        <input class="field" type="text" th:field="*{contato.telefoneCelular}" placeholder="(11) 92423-2342"
+                               th:required="required">
                     </div>
                     <div class="four wide field">
                         <label>Telefone fixo</label>
-                        <input class="field" type="text" th:field="*{contato.telefoneFixo}" placeholder="Ex: marcofreitas@hotmail.com">
+                        <input class="field" type="text" th:field="*{contato.telefoneFixo}" placeholder="Ex: (11) 4523-5428"
+                               th:required="required">
                     </div>
                 </div>
 
                 <div class="field">
                     <label>Descrição</label>
-                    <textarea th:field="*{descricao}"></textarea>
+                    <textarea th:field="*{descricao}" placeholder="Comércio atacadista de doces."></textarea>
                 </div>
 
                 <button value="submit" class="ui primary button">Cadastrar</button>
@@ -89,5 +99,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/validacaofornecedor/}"></script>
 </body>
 </html>
