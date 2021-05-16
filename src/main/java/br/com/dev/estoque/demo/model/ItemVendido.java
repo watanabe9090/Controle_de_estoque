@@ -1,5 +1,8 @@
 package br.com.dev.estoque.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor @AllArgsConstructor
 public class ItemVendido {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -18,7 +21,7 @@ public class ItemVendido {
     private ItemEstocado itemEstocado;
 
     @ManyToOne
-    @JoinColumn(name = "venda")
+    @JoinColumn(name = "venda_id")
     private Venda venda;
 
     private double precoVenda;

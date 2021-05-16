@@ -48,9 +48,9 @@
                         <td></td>
                     </tr>
                     <tr th:each="item_vendido : ${itens_vendidos}">
-                        <td class="four wide field"><span th:text="${item_vendido.itemEstocado.nome}">Nome</span></td>
-                        <td class="four wide field"><span th:text="${item_vendido.itemEstocado.marca}">Marca</span></td>
-                        <td class="four wide field"><span th:text="${item_vendido.preco}">Preço Vendido</span></td>
+                        <td class="four wide field"><span th:text="${item_vendido.itemEstocado.mercadoria.nome}">Nome</span></td>
+                        <td class="four wide field"><span th:text="${item_vendido.itemEstocado.mercadoria.marca}">Marca</span></td>
+                        <td class="four wide field"><span th:text="${item_vendido.precoVenda}">Preço Vendido</span></td>
                         <td class="four wide field"><span th:text="${item_vendido.quantidade}">Quantidade Vendida</span></td>
                     </tr>
                     </tbody>

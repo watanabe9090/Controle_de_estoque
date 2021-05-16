@@ -1,6 +1,5 @@
 package br.com.dev.estoque.demo.controller;
 
-import br.com.dev.estoque.demo.dto.AddItemVendaDTO;
 import br.com.dev.estoque.demo.model.Fornecedor;
 import br.com.dev.estoque.demo.model.ItemEstocado;
 import br.com.dev.estoque.demo.model.ItemVendido;
@@ -14,10 +13,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("venda")
@@ -45,32 +49,28 @@ public class VendaController {
 
     @GetMapping("cadastro")
     public String getVendaCadastroPage(@ModelAttribute Venda venda, Model model) {
+        List<ItemEstocado> itemEstocados = itemEstocadoRepository.findAll();
+//        venda.setItensVendidos(new ArrayList<>()); ;
+        Map<Long, ItemEstocado> itemEstocadosMap = itemEstocados.stream().collect(Collectors.toMap(i -> i.getId(), item -> item));
         model.addAttribute("clientes", clienteRepository.findAll());
-        model.addAttribute("itens_estocados", itemEstocadoRepository.findAll());
+        model.addAttribute("itens_estocados", itemEstocadosMap);
         return "venda_cadastro";
     }
 
-    @PostMapping("cadastro/addItem/{id}")
-    public String adicionarItem(@PathVariable("id") BigInteger id, @ModelAttribute AddItemVendaDTO addItemVendaDTO, Model model) {
-        System.out.println(id);
-
-//        System.out.println(venda.toString());
-//        Optional<ItemEstocado> i = itemEstocadoRepository.findById(id.longValue());
-//        ItemVendido iv = new ItemVendido(null, i.get(),venda,10);
-//
-//        if (venda.getItemVendidos() == null)
-//            venda.setItemVendidos(new ArrayList<>());
-//
-//        venda.getItemVendidos().add(iv);
-
-//        return getVendaCadastroPage(venda, model);
-        return "";
-    }
 
     @PostMapping("cadastro/save")
     public String saveVenda(@ModelAttribute Venda venda) {
         venda.setDataVenda(LocalDateTime.now());
+
+        for(ItemVendido itemVendido :venda.getItensVendidos()) {
+            ItemEstocado itemEstocado = itemVendido.getItemEstocado();
+            itemEstocado.setQuantidade(itemEstocado.getQuantidade() - itemVendido.getQuantidade());
+            itemEstocadoRepository.save(itemEstocado);
+        }
+
+        venda.getItensVendidos().stream().forEach(itemVendido -> {itemVendido.setVenda(venda);});
         vendaRepository.save(venda);
+        System.out.println(venda.toString());
         return "redirect:/venda";
     }
 
@@ -81,7 +81,7 @@ public class VendaController {
         Venda venda = vendaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Id inválido: " + id));
         model.addAttribute("venda", venda);
-        model.addAttribute("itens_vendidos", venda.getItemVendidos());
+        model.addAttribute("itens_vendidos", venda.getItensVendidos());
         return "venda_detalhe";
     }
 
