@@ -34,7 +34,7 @@
             </tr>
             <tr th:each="venda : ${vendas}" >
                 <td class="one wide field"><span th:text="${venda.id}"></span></td>
-                <td class="three wide field"><span th:text="${venda.dataVenda}"></span></td>
+                <td class="three wide field"><span th:text="${#temporals.format(venda.dataVenda)}"></span></td>
                 <td class="three wide field"><span th:text="${venda.cliente.nome}"></span></td>
                 <td class="three wide field"><span th:text="${venda.valor}"></span></td>
                 <td class="three wide field">

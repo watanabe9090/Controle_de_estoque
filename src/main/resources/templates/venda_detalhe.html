@@ -18,18 +18,24 @@
                 <h2 class="ui dividing header">Cadastro de Vendas</h2>
 
 
-                <div class="fields">
-                    <div class="four wide field">
-                        <label>Cliente</label>
-                        <label th:text="${venda.cliente.nome}"></label>
-                        <label th:text="${venda.cliente.CPF}"></label>
-                    </div>
-                    <div class="eleven wide field">
-                        <label>Data da Venda</label>
-                        <label th:text="${venda.dataVenda}"></label>
-                    </div>
-                </div>
-
+                <table class="ui grey table" style="margin: auto;">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>CPF</th>
+                            <th>Data</th>
+                            <th>Valor Total em R$:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="four wide field" th:text="${venda.cliente.nome}"></td>
+                            <td class="three wide field" th:text="${venda.cliente.CPF}"></td>
+                            <td class="five wide field" th:text="${#temporals.format(venda.dataVenda)}"></td>
+                            <td class="four wide field" th:text="*{valor}"></td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <table class="ui celled table">
                     <thead>
@@ -55,12 +61,6 @@
                     </tr>
                     </tbody>
                 </table>
-
-
-                <div class="field">
-                    <label>Valor Total</label>
-                    <input readonly type="number" th:field="*{valor}">
-                </div>
 
             </form>
         </div>
