@@ -72,9 +72,10 @@
                             <thead>
                                 <tr>
                                     <td class="six wide field">Nome</td>
-                                    <td class="one wide field">Quantidade Estoque</td>
-                                    <td class="one wide field">Preço Venda</td>
-                                    <td class="one wide field" colspan="2">Quantidade</td>
+                                    <td class="two wide field">Quantidade Estoque</td>
+                                    <td class="two wide field">Preço Venda</td>
+                                    <td class="three wide field">Quantidade</td>
+                                    <td class="three wide field"></td>
                                 </tr>
                             </thead>
                             <tbody id="itemEstocadoTableBody">
@@ -112,8 +113,8 @@
                 let row = `<tr>
                     <td>${itensEstocados[item].mercadoria.nome}</td>
                     <td>${itensEstocados[item].quantidade}</td>
-                    <td>${itensEstocados[item].precoVenda}</td>
-                    <td><input id="qtd${itensEstocados[item].id}" /></td>
+                    <td>R$:&nbsp${itensEstocados[item].precoVenda}</td>
+                    <td><input oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="qtd${itensEstocados[item].id}" /></td>
                     <td><button type="button" onclick="adicionarItemNaVenda(${itensEstocados[item].id})">Adicionar</button></td>
                 </tr>`
                 table.innerHTML += row;
@@ -124,11 +125,22 @@
 
         function adicionarItemNaVenda(id) {
             let itemEstocado = itensEstocados[`${id}`]
-            let quantidade = document.getElementById(`qtd${id}`).value;
+            let quantidadeInput = document.getElementById(`qtd${id}`);
+            let quantidade = quantidadeInput.value;
             if(quantidade > itemEstocado.quantidade) {
                 alert("Quantidade Acima do Estocado");
-            } else {
-                itensVenda[`${id}`] = {itemEstocado, quantidade};
+                quantidadeInput.value = '';
+
+            } else if(quantidade == 0 || quantidade < 0) {
+                alert("Quantidade Inválida ou Negativa");
+                quantidadeInput.value = '';
+            }
+            else {
+                if(itensVenda[`${id}`]) {
+                    itensVenda[`${id}`].quantidade = parseInt(itensVenda[`${id}`].quantidade) + parseInt(quantidade);
+                } else {
+                    itensVenda[`${id}`] = {itemEstocado, quantidade};
+                }
                 console.log(itensVenda);
                 makeVendaTable();
                 itensEstocados[`${id}`].quantidade -= parseInt(quantidade);
@@ -149,7 +161,7 @@
                     <td>${itensVenda[item].itemEstocado.mercadoria.marca}</td>
                     <td>${itensVenda[item].itemEstocado.precoVenda}</td>
                     <td>${itensVenda[item].quantidade}</td>
-                    <td><button class="negative ui button" type="button">Remover</button></td>
+                    <td><button onclick="removerItemDaVenda(${item})" class="negative ui button" type="button">Remover</button></td>
                     <input type="hidden" name="${fieldName}[${index}].itemEstocado" value="${itensVenda[item].itemEstocado.id}"/>
                     <input type="hidden" name="${fieldName}[${index}].quantidade" value="${itensVenda[item].quantidade}"/>
                     <input type="hidden" name="${fieldName}[${index}].precoVenda" value="${itensVenda[item].itemEstocado.precoVenda}"/>
@@ -163,8 +175,11 @@
             vendaValor.value = parseFloat(valor.toFixed(2));
         }
 
-        function removerItem() {
-
+        function removerItemDaVenda(item) {
+            let itemVenda = itensVenda[item];
+            itensEstocados[itemVenda.itemEstocado.id].quantidade = parseInt(itensEstocados[itemVenda.itemEstocado.id].quantidade) + parseInt(itemVenda.quantidade);
+            delete itensVenda[item];
+            makeVendaTable();
         }
         
     </script>
