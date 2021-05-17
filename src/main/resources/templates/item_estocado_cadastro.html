@@ -22,15 +22,16 @@
             <div class="fields">
                 <div class="eight wide field">
                     <label>Nome</label>
-                    <input type="text" th:field="*{mercadoria.nome}" placeholder="Ex: Ração A cães adultos Frango ">
+                    <input id="nome" type="text" th:field="*{mercadoria.nome}" placeholder="Ex: Ração A cães adultos Frango ">
                 </div>
                 <div class="eight wide field">
                     <label>Marca</label>
-                    <input type="text" th:field="*{mercadoria.marca}" placeholder="Ex: Marco de Freitas Junior">
+                    <input id="marca" type="text" th:field="*{mercadoria.marca}" placeholder="Ex: Marco de Freitas Junior">
                 </div>
                 <div class="eight wide field">
                     <label>Fornecedor</label>
-                    <select th:field="*{mercadoria.fornecedor}">
+                    <select id="fornecedor_dropdown" class="ui dropdown" th:field="*{mercadoria.fornecedor}">
+                        <option value="">Selecione um Fornecedor</option>
                         <option th:each="fornecedor : ${fornecedores}"
                                 th:value="${fornecedor.id}"
                                 th:text="${fornecedor.nomeFantasia}">
@@ -50,7 +51,7 @@
                 </div>
                 <div class="eight wide field">
                     <label>Quantidade</label>
-                    <input type="text" th:field="*{quantidade}" placeholder="Ex: 20">
+                    <input id="quantidade" oninput="this.value=this.value.replace(/[^0-9]/g,'');" type="text" th:field="*{quantidade}" placeholder="Ex: 20">
                 </div>
             </div>
 
@@ -59,11 +60,11 @@
             <div class="fields">
                 <div class="four wide field">
                     <label>Data Fabricação</label>
-                    <input type="date" th:field="*{lote.dataFabricacao}" placeholder="Ex: Casa de Doces Bomzão">
+                    <input id="data_fabricacao" type="date" th:field="*{lote.dataFabricacao}" placeholder="dd-mm-yyyy">
                 </div>
                 <div class="eleven wide field">
                     <label>Data Vencimento</label>
-                    <input type="date" th:field="*{lote.dataVencimento}" placeholder="Ex: Casa de Doces Bomzão">
+                    <input id="data_validade" type="date" th:field="*{lote.dataVencimento}" placeholder="Ex: Casa de Doces Bomzão">
                 </div>
             </div>
 
@@ -89,7 +90,7 @@
             </div>
 
             <button value="submit" class="ui primary button">Cadastrar</button>
-            <button class="ui button">Cancelar </button>
+            <a class="ui button" href="/item_estocado">Cancelar </a>
         </form>
     </div>
 </div>
@@ -97,5 +98,74 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+
+<script>
+    $(document).ready(() => {
+        $('.ui.dropdown').dropdown();
+
+        $('.ui.form').form({
+            inline : true,
+            on: 'blur',
+            fields: {
+                nome: {
+                    identifier  : 'nome',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Digite um nome'
+                        }
+                    ]
+                },
+                marca: {
+                    identifier  : 'marca',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Digite uma marca'
+                        }
+                    ]
+                },
+                fornecedor_dropdown: {
+                    identifier  : 'fornecedor_dropdown',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Por favor, Escolha um fornecedor'
+                        }
+                    ]
+                },
+                data_fabricacao: {
+                    identifier  : 'data_fabricacao',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Coloque uma data valida'
+                        }
+                    ]
+                },
+                data_validade: {
+                    identifier  : 'data_validade',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Coloque uma data valida'
+                        }
+                    ]
+                },
+                quantidade: {
+                    identifier  : 'quantidade',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Coloque uma quantia valida'
+                        }
+                    ]
+                }
+            }
+        });
+    });
+
+</script>
+
 </body>
 </html>
