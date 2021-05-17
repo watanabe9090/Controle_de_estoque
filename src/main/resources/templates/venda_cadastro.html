@@ -22,13 +22,17 @@
 
                 <h3 class="ui dividing header">Cliente</h3>
                 <div class="fields">
-                    <select th:field="*{cliente}">
-                        <option th:each="cliente : ${clientes}"
-                                th:value="${cliente.id}"
-                                th:text="${cliente.nome}">
-                        </option>
-                    </select>
-                    <button type="button" id="btnAddMerc" class="ui primary button">Adicionar Mercadoria</button>
+                    <div class="ten wide field">
+                        <select class="ui dropdown" th:field="*{cliente}">
+                            <option th:each="cliente : ${clientes}"
+                                    th:value="${cliente.id}"
+                                    th:text="${cliente.nome}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="six wide field">
+                        <button type="button" id="btnAddMerc" class="ui primary button">Adicionar Mercadoria</button>
+                    </div>
                 </div>
 
                 <h3 class="ui dividing header">Sumário da Venda</h3>
@@ -36,11 +40,11 @@
                     <table class="ui celled table">
                         <thead>
                             <tr>
-                                <td class="three wide field">Nome</td>
-                                <td class="three wide field">Marca</td>
-                                <td class="two wide field">Preço Unitário</td>
-                                <td class="two wide field">Quantidade Adicionada</td>
-                                <td class="two wide field">Opção</td>
+                                <th class="three wide field">Nome</th>
+                                <th class="three wide field">Marca</th>
+                                <th class="two wide field">Preço Unitário</th>
+                                <th class="two wide field">Quantidade Adicionada</th>
+                                <th class="two wide field">Opção</th>
                             </tr>
                         </thead>
                         <tbody id="carrinhoTableBody">
@@ -55,36 +59,52 @@
                     <input id="vendaValor" type="number" readonly th:field="*{valor}">
                 </div>
                 
-                <button value="submit" class="ui primary button">Realizar Venda</button>
+                <button id="realizar_venda_btn" value="submit" class="ui primary button">Realizar Venda</button>
             </form>
 
 
 
 
 
-            <div class="ui fullscreen modal">
-                <form class="ui form"
-                      th:object="${venda}">
+            <div class="ui fullscreen modal" style="padding: 30px">
+                <form class="ui form" th:object="${venda}">
                     <h3 class="ui dividing header">Mercadorias</h3>
+                    <div class="scrolling content">
                     <div class="field">
                         <input id="itemEstocadoSearch">
-                        <table class="ui celled table scrolling content">
+                        <table class="ui celled padded table">
                             <thead>
                                 <tr>
-                                    <td class="six wide field">Nome</td>
-                                    <td class="two wide field">Quantidade Estoque</td>
-                                    <td class="two wide field">Preço Venda</td>
-                                    <td class="three wide field">Quantidade</td>
-                                    <td class="three wide field"></td>
+                                    <th class="six wide field">Nome</th>
+                                    <th class="two wide field">Quantidade Estoque</th>
+                                    <th class="two wide field">Preço Venda</th>
+                                    <th class="three wide field">Quantidade</th>
+                                    <th class="three wide field">Selecionar</th>
                                 </tr>
                             </thead>
                             <tbody id="itemEstocadoTableBody">
                             </tbody>
                         </table>
                     </div>
+                    </div>
                 </form>
             </div>
 
+            <div id="venda_vazia_modal" class="ui basic modal" style="width:30%; left:70%;">
+                <div class="ui icon header">
+                    <i class="exclamation triangle icon"></i>
+                    Venda vazia
+                </div>
+                <div class="content">
+                    <p>Por favor selecione algum item antes de realizar a venda</p>
+                </div>
+                <div class="actions">
+                    <div class="ui green basic ok inverted button">
+                        <i class="remove icon"></i>
+                        Certo
+                    </div>
+                </div>
+            </div>
         </div>
         
     </div>
@@ -100,8 +120,8 @@
 
         console.log("ASD");
         document.getElementById('btnAddMerc').addEventListener('click', function() {
-            $('.ui.fullscreen.modal').modal('show');
             makeItemEstocadoTable();
+            $('.ui.fullscreen.modal').modal('show');
         });
 
         const itensVenda = {};
@@ -115,7 +135,7 @@
                     <td>${itensEstocados[item].quantidade}</td>
                     <td>R$:&nbsp${itensEstocados[item].precoVenda}</td>
                     <td><input oninput="this.value=this.value.replace(/[^0-9]/g,'');" id="qtd${itensEstocados[item].id}" /></td>
-                    <td><button type="button" onclick="adicionarItemNaVenda(${itensEstocados[item].id})">Adicionar</button></td>
+                    <td><button class="ui green button" type="button" onclick="adicionarItemNaVenda(${itensEstocados[item].id})">Adicionar</button></td>
                 </tr>`
                 table.innerHTML += row;
 
@@ -184,7 +204,17 @@
         
     </script>
 
-        
+    <script>
+        document.getElementById('formularioVenda').addEventListener('submit', (event) => {
+            if(Object.keys(itensVenda).length <= 0) {
+                event.preventDefault();
+                $('#venda_vazia_modal').modal('show');
+            }
+        });
+        $(document).ready(() => {
+            $('.ui.dropdown').dropdown();
+        });
+    </script>
 
 </body>
 </html>
