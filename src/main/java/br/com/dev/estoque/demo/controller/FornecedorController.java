@@ -18,22 +18,21 @@ import java.util.Optional;
 @RequestMapping(path = "fornecedor")
 public class FornecedorController {
 
-    private final FornecedorRepository fornecedorDAO;
+    private final FornecedorRepository fornecedorRepository;
 
     @Autowired
-    public FornecedorController(FornecedorRepository fornecedorDAO) {
-        this.fornecedorDAO = fornecedorDAO;
+    public FornecedorController(FornecedorRepository fornecedorRepository) {
+        this.fornecedorRepository = fornecedorRepository;
     }
 
     @GetMapping
     public String getFornecedorByNomeFantasia(@RequestParam Optional<String> nomeFantasia, Model model) {
         if(!nomeFantasia.isPresent()) {
-            model.addAttribute("fornecedores", this.fornecedorDAO.findAll());
-            return "fornecedor";
+            model.addAttribute("fornecedores", this.fornecedorRepository.findAll());
         } else {
-            model.addAttribute("fornecedores", fornecedorDAO.findByNomeFantasiaContainingIgnoreCase(nomeFantasia.get()));
-            return "fornecedor";
+            model.addAttribute("fornecedores", fornecedorRepository.findByNomeFantasiaContainingIgnoreCase(nomeFantasia.get()));
         }
+        return "fornecedor";
     }
 
 
@@ -47,7 +46,7 @@ public class FornecedorController {
     @PostMapping("cadastro/save")
     public String saveFornecedor(@ModelAttribute Fornecedor fornecedor,  BindingResult result, Model model) {
         System.out.println(fornecedor.toString());
-        fornecedorDAO.save(fornecedor);
+        fornecedorRepository.save(fornecedor);
         return "redirect:/fornecedor";
 
     }
@@ -56,7 +55,7 @@ public class FornecedorController {
     */
     @GetMapping("edit/{id}")
     public String getEditFornecedorPage(@PathVariable("id") long id, Model model) {
-        Fornecedor fornecedor = fornecedorDAO.findById(id)
+        Fornecedor fornecedor = fornecedorRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Id inválido: " + id));
         model.addAttribute("fornecedor", fornecedor);
         return "fornecedor_alterar";
@@ -68,16 +67,16 @@ public class FornecedorController {
             fornecedor.setId(id);
             return "fornecedor_alterar";
         }
-        fornecedorDAO.save(fornecedor);
+        fornecedorRepository.save(fornecedor);
         return "redirect:/fornecedor";
     }
 
 
     @GetMapping("delete/{id}")
     public String deleteFornecedor(@PathVariable("id") long id, Model model) {
-        Fornecedor fornecedor = fornecedorDAO.findById(id)
+        Fornecedor fornecedor = fornecedorRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Id inválido: " + id));
-        fornecedorDAO.delete(fornecedor);
+        fornecedorRepository.delete(fornecedor);
         return "redirect:/fornecedor";
     }
 }

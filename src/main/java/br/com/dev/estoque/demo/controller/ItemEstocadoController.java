@@ -17,14 +17,14 @@ public class ItemEstocadoController {
 
     private final ItemEstocadoRepository itemEstocadoDAO;
     private final MercadoriaRepository mercadoriaDAO;
-    private final FornecedorRepository fornecedorDAO;
+    private final FornecedorRepository fornecedorRepository;
     private final LocalRepository localRepository;
 
     @Autowired
-    public ItemEstocadoController(ItemEstocadoRepository itemEstocadoDAO, FornecedorRepository fornecedorDAO, MercadoriaRepository mercadoriaDAO, LocalRepository localRepository) {
+    public ItemEstocadoController(ItemEstocadoRepository itemEstocadoDAO, FornecedorRepository fornecedorRepository, MercadoriaRepository mercadoriaDAO, LocalRepository localRepository) {
         this.itemEstocadoDAO = itemEstocadoDAO;
         this.mercadoriaDAO = mercadoriaDAO;
-        this.fornecedorDAO = fornecedorDAO;
+        this.fornecedorRepository = fornecedorRepository;
         this.localRepository = localRepository;
     }
 
@@ -40,7 +40,8 @@ public class ItemEstocadoController {
 
     @GetMapping("cadastro")
     public String getCadastroItemEstocadoPage(@ModelAttribute ItemEstocado itemEstocado, Model model) {
-        model.addAttribute("fornecedores", fornecedorDAO.findAll());
+        model.addAttribute("fornecedores", fornecedorRepository.findAll());
+        model.addAttribute("locais", localRepository.findAll());
         return "item_estocado_cadastro";
     }
 
@@ -59,7 +60,7 @@ public class ItemEstocadoController {
         ItemEstocado itemEstocado = itemEstocadoDAO.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Id inválido: " + id));
         model.addAttribute("item_estocado", itemEstocado);
-        model.addAttribute("fornecedores", fornecedorDAO.findAll());
+        model.addAttribute("fornecedores", fornecedorRepository.findAll());
         return "item_estocado_alterar";
     }
 
