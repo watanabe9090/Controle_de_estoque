@@ -13,41 +13,44 @@
         <h1 class="ui dividing header">Clientes</h1>
         <button class="ui basic button"> <i class="icon user"></i><a href="cliente/cadastro">Adicionar Cliente</a></button>
         <br>
-        <form method="get" th:action="@{/cliente}" class="ui fluid icon input" style="margin-top: 15px;">
-            <table class="ui celled table">
-                <thead>
-                <tr><th>ID</th>
-                    <th>CPF</th>
-                    <th>RG</th>
-                    <th>Nome</th>
-                    <th>Opções</th>
-                </tr></thead>
-                <tbody>
-                <tr th:if="${clientes.empty}">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr th:each="cliente : ${clientes}">
-                    <td class="one wide field"><span th:text="${cliente.id}">ID</span></td>
-                    <td class="three wide field"><span th:text="${cliente.CPF}">CPF</span></td>
-                    <td class="two wide field"><span th:text="${cliente.RG}">RG</span></td>
-                    <td class="two wide field"><span th:text="${cliente.nome}">Nome</span></td>
-
-                    <td id="fornecedor-options-buttons" class="two wide field">
-                        <a class="ui mini basic blue button" th:href="@{/cliente/edit/{id}(id=${cliente.id})}">
-                            <i class="edit outline icon"></i>Editar
-                        </a>
-                        <a class="ui mini basic red button" th:href="@{/cliente/delete/{id}(id=${cliente.id})}">
-                            <i class="minus circle icon" ></i>Deletar
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <form method="get" th:action="@{/cliente}" class="ui fluid icon input">
+            <input type="text" name="nome" style="margin-right: 5px; margin-top:10px;" placeholder="Pesquisar Cliente">
+            <button class="ui primary mini button" type="submit"><i style="font-size: 20px" class="search icon"></i></button>
         </form>
+        <br>
+        <table id="clientes" class="ui celled table">
+            <thead>
+            <tr><th>ID</th>
+                <th>CPF</th>
+                <th>RG</th>
+                <th>Nome</th>
+                <th>Opções</th>
+            </tr></thead>
+            <tbody>
+            <tr th:if="${clientes.empty}">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr th:each="cliente : ${clientes}">
+                <td class="one wide field"><span th:text="${cliente.id}">ID</span></td>
+                <td class="three wide field"><span th:text="${cliente.CPF}">CPF</span></td>
+                <td class="two wide field"><span th:text="${cliente.RG}">RG</span></td>
+                <td class="two wide field"><span th:text="${cliente.nome}">Nome</span></td>
+
+                <td id="fornecedor-options-buttons" class="two wide field">
+                    <a class="ui mini basic blue button" th:href="@{/cliente/edit/{id}(id=${cliente.id})}">
+                        <i class="edit outline icon"></i>Editar
+                    </a>
+                    <a class="ui mini basic red button" th:href="@{/cliente/delete/{id}(id=${cliente.id})}">
+                        <i class="minus circle icon" ></i>Deletar
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
