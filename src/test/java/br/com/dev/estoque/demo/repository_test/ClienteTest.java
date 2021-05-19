@@ -17,8 +17,13 @@ import java.util.Optional;
 @DisplayName("Testes Unitários para o Cliente")
 public class ClienteTest {
 
+    private final ClienteRepository clienteRepository;
+
+
     @Autowired
-    private ClienteRepository clienteRepository;
+    public ClienteTest(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
 
     /**
      * Esta seção está caracterizada pelos
@@ -69,7 +74,7 @@ public class ClienteTest {
         Cliente clienteSaved = this.clienteRepository.save(clienteToBeSaved);
         String nome = clienteSaved.getNome();
 
-        List<Cliente> clienteList = this.clienteRepository.findByNome(nome);
+        List<Cliente> clienteList = this.clienteRepository.findByNomeContainingIgnoreCase(nome);
         Assertions.assertThat(clienteList).isNotEmpty();
         Assertions.assertThat(clienteList).contains(clienteSaved);
 
@@ -79,8 +84,19 @@ public class ClienteTest {
     @DisplayName("Find: Procura clientes pelo paramentro 'nome' por uma string e retorna uma lista Vazia")
     public void findByName_ReturnsEmptyListOfCliente_WhenClienteIsNotFound() {
         String nome = "This is a cliente nome who cannot be found";
-        List<Cliente> clienteList = this.clienteRepository.findByNome(nome);
+        List<Cliente> clienteList = this.clienteRepository.findByNomeContainingIgnoreCase(nome);
         Assertions.assertThat(clienteList).isEmpty();
+    }
+
+    @Test
+    @DisplayName("Find: Procura um cliente pelo paramentro 'CPF' por uma string e retorna um cliente com determinado cpf existir")
+    public void findByCPF_ReturnsCliente_WhenSuccessful() {
+        Cliente clienteToBeSaved = ClienteCreator.createValidCliente();
+        Cliente clienteSaved = this.clienteRepository.save(clienteToBeSaved);
+        String cpf = clienteSaved.getCPF();
+
+        Cliente clienteToBeFinded = this.clienteRepository.findByCPF(cpf);
+        Assertions.assertThat(clienteToBeFinded).isEqualTo(clienteSaved);
     }
 
     /**
@@ -121,7 +137,7 @@ public class ClienteTest {
 
     @Test
     @DisplayName("save: Joga uma exceção de 'ConstraintViolationException' quando o campo 'nome' está nulo")
-    public void save_ThrowsConstraintViolationException_WhenNameIsNull() {
+    public void save_ThrowsConstraintViolationException_WhenNomeIsNull() {
         Cliente cliente = ClienteCreator.createNullCliente(true, false, false);
         Assertions.assertThatThrownBy(() -> this.clienteRepository.save(cliente))
                 .isInstanceOf(ConstraintViolationException.class);
