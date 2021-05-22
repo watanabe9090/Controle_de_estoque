@@ -35,6 +35,7 @@ INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('São Paulo', '31
 INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('São Paulo', '1341-333', 'Sé', 'Rua Dário Demens', '99'); -- 10
 
 
+
 -- Exemplo para inserção de dados na tabela de fornecedor
 --INSERT INTO FORNECEDOR()
 --SELECT contato.id, endereco.id
@@ -69,3 +70,19 @@ INSERT INTO MERCADORIA(nome, marca, descricao, fornecedor)
 VALUES ('Royal Canin Medium', 'Royal Canin', 'Ração com embalagens de 15kg',5);
 INSERT INTO ITEM_ESTOCADO(id,preco_compra, preco_venda, quantidade,local, lote, mercadoria)
 VALUES (16,9.85, 13.56, 30, 6, 7, 2);
+
+
+
+
+
+
+
+-- Inserção de dados em locais
+INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('76914-560', '13D', '10 Toneladas');
+INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('76914-560', '13E', '10 Toneladas');
+INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('76914-560', '13F', '10 Toneladas');
+INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('76914-560', '2A', '10 Toneladas');
+INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('76914-560', '2G', '10 Toneladas');
+INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('69311-014', '21C', '10 Toneladas');
+INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('69311-014', '21D', '10 Toneladas');
+INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('69311-014', '21B', '10 Toneladas');

@@ -19,20 +19,18 @@
               th:action="@{/item_estocado/edit/{id}(id=${item_estocado.id})}"
               method="post"
               class="ui form">
-            <h2 class="ui dividing header">Editar de Mercadorias</h2>
-
             <div class="fields">
                 <div class="eight wide field">
                     <label>Nome</label>
-                    <input type="text" th:field="*{mercadoria.nome}" placeholder="Ex: Ração A cães adultos Frango ">
+                    <input id="nome" type="text" th:field="*{mercadoria.nome}" placeholder="Ex: Ração A cães adultos Frango ">
                 </div>
                 <div class="eight wide field">
                     <label>Marca</label>
-                    <input type="text" th:field="*{mercadoria.marca}" placeholder="Ex: Marco de Freitas Junior">
+                    <input id="marca" type="text" th:field="*{mercadoria.marca}" placeholder="Ex: Marco de Freitas Junior">
                 </div>
                 <div class="eight wide field">
                     <label>Fornecedor</label>
-                    <select class="ui dropdown" th:field="*{mercadoria.fornecedor}">
+                    <select id="fornecedor_dropdown" class="ui dropdown" th:field="*{mercadoria.fornecedor}">
                         <option th:each="fornecedor : ${fornecedores}"
                                 th:value="${fornecedor.id}"
                                 th:text="${fornecedor.nomeFantasia}">
@@ -45,15 +43,15 @@
             <div class="fields">
                 <div class="four wide field">
                     <label>Preço de Compra</label>
-                    <input type="number" th:field="*{precoCompra}" placeholder="Ex: 10,99">
+                    <input id="preco_compra" lang="pt-br" type="number" step="0.01" th:field="*{precoCompra}" placeholder="Ex: 10,99">
                 </div>
                 <div class="eleven wide field">
                     <label>Preço de Venda</label>
-                    <input type="number" th:field="*{precoVenda}" placeholder="Ex: 20,99">
+                    <input id="preco_venda" lang="pt-br" type="number" step="0.01" th:field="*{precoVenda}" placeholder="Ex: 20,99">
                 </div>
                 <div class="eight wide field">
                     <label>Quantidade</label>
-                    <input type="text" th:field="*{quantidade}" placeholder="Ex: 20">
+                    <input id="quantidade" oninput="this.value=this.value.replace(/[^0-9]/g,'');" type="text" th:field="*{quantidade}" placeholder="Ex: 20">
                 </div>
             </div>
 
@@ -73,16 +71,17 @@
             <div class="fields">
                 <div class="ten wide field">
                     <label>CEP</label>
-                    <input type="text" th:field="*{local.cep}" placeholder="Ex: Casa de Doces Bomzão">
+                    <input type="text" readonly th:text="*{local.cep}">
                 </div>
                 <div class="six wide field">
                     <label>Setor</label>
-                    <input type="text" th:field="*{local.setor}" placeholder="Ex: Casa de Doces Bomzão">
+                    <input type="text" readonly th:text="*{local.setor}">
                 </div>
                 <div class="six wide field">
                     <label>Capacidade</label>
-                    <input type="text" th:field="*{local.capacidade}" placeholder="Ex: Casa de Doces Bomzão">
+                    <input type="text" readonly th:text="*{local.capacidade}">
                 </div>
+                <input type="hidden" th:field="*{local}" th:value="*{local.id}">
 
             </div>
 
@@ -91,8 +90,8 @@
                 <textarea th:field="*{mercadoria.descricao}"></textarea>
             </div>
 
-            <button value="submit" class="ui primary button">Cadastrar</button>
-            <button class="ui button">Cancelar </button>
+            <button value="submit" class="ui primary button">Alterar</button>
+            <button class="ui button" href="/item_estocado">Cancelar </button>
         </form>
     </div>
 </div>
@@ -102,11 +101,95 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 
 <script>
+    <script>
     $(document).ready(() => {
         $('.ui.dropdown').dropdown();
+        $('#preco_compra').val('');
+        $('#preco_venda').val('');
+        $('#quantidade').val('');
 
 
+        $('.ui.form').form({
+            inline : true,
+            on: 'blur',
+            fields: {
+                nome: {
+                    identifier  : 'nome',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Digite um nome'
+                        }
+                    ]
+                },
+                marca: {
+                    identifier  : 'marca',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Digite uma marca'
+                        }
+                    ]
+                },
+                fornecedor_dropdown: {
+                    identifier  : 'fornecedor_dropdown',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Por favor, Escolha um fornecedor'
+                        }
+                    ]
+                },
+                data_fabricacao: {
+                    identifier  : 'data_fabricacao',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Coloque uma data valida'
+                        }
+                    ]
+                },
+                data_validade: {
+                    identifier  : 'data_validade',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Coloque uma data valida'
+                        }
+                    ]
+                },
+                preco_compra: {
+                    identifier  : 'preco_compra',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Coloque um valor de compra válido'
+                        }
+                    ]
+                },
+                preco_venda: {
+                    identifier  : 'preco_venda',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Coloque um valor de venda válido'
+                        }
+                    ]
+                },
+                quantidade: {
+                    identifier  : 'quantidade',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Coloque uma quantia valida'
+                        }
+                    ]
+                }
+
+            }
+        });
     });
+
 </script>
 </body>
 </html>

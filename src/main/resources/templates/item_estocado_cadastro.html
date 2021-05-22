@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.thymeleaf.org ">
 <head>
     <meta charset="UTF-8">
@@ -43,11 +43,11 @@
             <div class="fields">
                 <div class="four wide field">
                     <label>Preço de Compra</label>
-                    <input type="number" th:field="*{precoCompra}" placeholder="Ex: 10,99">
+                    <input id="preco_compra" lang="pt-br" type="number" step="0.01" th:field="*{precoCompra}" placeholder="Ex: 10,99">
                 </div>
                 <div class="eleven wide field">
                     <label>Preço de Venda</label>
-                    <input type="number" th:field="*{precoVenda}" placeholder="Ex: 20,99">
+                    <input id="preco_venda" lang="pt-br" type="number" step="0.01" th:field="*{precoVenda}" placeholder="Ex: 20,99">
                 </div>
                 <div class="eight wide field">
                     <label>Quantidade</label>
@@ -55,32 +55,26 @@
                 </div>
             </div>
 
-
-            <h3 class="ui dividing header">Lote</h3>
+            <h3 class="ui dividing header">Lote e Local</h3>
             <div class="fields">
-                <div class="four wide field">
+                <div class="eight wide field">
                     <label>Data Fabricação</label>
                     <input id="data_fabricacao" type="date" th:field="*{lote.dataFabricacao}" placeholder="dd-mm-yyyy">
                 </div>
-                <div class="eleven wide field">
+                <div class="eight wide field">
                     <label>Data Vencimento</label>
                     <input id="data_validade" type="date" th:field="*{lote.dataVencimento}" placeholder="Ex: Casa de Doces Bomzão">
                 </div>
-            </div>
 
-            <h3 class="ui dividing header">Localização</h3>
-            <div class="fields">
-                <div class="ten wide field">
-                    <label>CEP</label>
-                    <input type="text" th:field="*{local.cep}" placeholder="Ex: Casa de Doces Bomzão">
-                </div>
-                <div class="six wide field">
-                    <label>Setor</label>
-                    <input type="text" th:field="*{local.setor}" placeholder="Ex: Casa de Doces Bomzão">
-                </div>
-                <div class="six wide field">
-                    <label>Capacidade</label>
-                    <input type="text" th:field="*{local.capacidade}" placeholder="Ex: Casa de Doces Bomzão">
+                <div class="five wide field">
+                    <label>Locais Já existentes</label>
+                    <select id="locais_dropdown" class="ui dropdown" th:field="*{local}">
+                        <option value="">Selecione um Local</option>
+                        <option th:each="local : ${locais}"
+                                th:value="${local.id}"
+                                th:text="${local.setor}">
+                        </option>
+                    </select>
                 </div>
             </div>
 
@@ -102,6 +96,10 @@
 <script>
     $(document).ready(() => {
         $('.ui.dropdown').dropdown();
+        $('#preco_compra').val('');
+        $('#preco_venda').val('');
+        $('#quantidade').val('');
+
 
         $('.ui.form').form({
             inline : true,
@@ -152,12 +150,39 @@
                         }
                     ]
                 },
+                preco_compra: {
+                    identifier  : 'preco_compra',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Coloque um valor de compra válido'
+                        }
+                    ]
+                },
+                preco_venda: {
+                    identifier  : 'preco_venda',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Coloque um valor de venda válido'
+                        }
+                    ]
+                },
                 quantidade: {
                     identifier  : 'quantidade',
                     rules: [
                         {
                             type   : 'empty',
                             prompt : 'Coloque uma quantia valida'
+                        }
+                    ]
+                },
+                locais_dropdown: {
+                    identifier  : 'locais_dropdown',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Por favor, Escolha um Local'
                         }
                     ]
                 }
