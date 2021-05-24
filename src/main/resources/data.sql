@@ -1,4 +1,4 @@
--- Exemplo para inserção de dados na tabela de cliente
+
 INSERT INTO CLIENTE(cpf, rg, nome) VALUES ('584.135.050-11', '16.186.629-3', 'Celebli');
 INSERT INTO CLIENTE(cpf, rg, nome) VALUES ('877.441.750-93', '26.805.220-7', 'Maxokral');
 INSERT INTO CLIENTE(cpf, rg, nome) VALUES ('505.306.920-40', '12.903.362-5', 'Ciorbe');
@@ -9,7 +9,6 @@ INSERT INTO CLIENTE(cpf, rg, nome) VALUES ('094.954.800-60', '17.904.021-2', 'Po
 INSERT INTO CLIENTE(cpf, rg, nome) VALUES ('328.679.340-01', '49.054.293-1', 'Maor');
 INSERT INTO CLIENTE(cpf, rg, nome) VALUES ('851.211.850-49', '24.751.006-3', 'Mazwuwa');
 
--- Exemplo para inserção de dados na tabela de contatos
 INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('09999-9999', '9999-9999'); -- 1
 INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('02521-3452', '3451-4523'); -- 2
 INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('03342-9999', '1245-2312'); -- 3
@@ -18,11 +17,10 @@ INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('07777-6666', '3456
 INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('02334-9999', '3453-3421'); -- 6
 INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('03456-9999', '8567-1234'); -- 7
 INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('03453-9999', '5634-4234'); -- 8
-INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('01342-9999', '9077-5345'); -- 9
-INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('07424-9999', '9088-8901'); -- 10
+INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('01342-9999', '9077-5345');
+INSERT INTO CONTATO(telefone_celular, telefone_fixo) VALUES ('07424-9999', '9088-8901');
 
 
--- Exemplo para inserção de dados na tabela de endereco
 INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('Barra do Piraí', '27135-630', 'Caixa DÁgua Velha', 'Rua Francisco Franco', '925'); -- 1
 INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('São Paulo', '5422-630', 'São Miguel Paulista', 'Rua Avelino Costa', '220'); -- 2
 INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('São Paulo', '7544-521', 'Vila Ré', 'Rua Meire Ortolano', '28'); -- 3
@@ -35,13 +33,6 @@ INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('São Paulo', '31
 INSERT INTO ENDERECO(cidade, cep, bairro, rua, numero) VALUES ('São Paulo', '1341-333', 'Sé', 'Rua Dário Demens', '99'); -- 10
 
 
-
--- Exemplo para inserção de dados na tabela de fornecedor
---INSERT INTO FORNECEDOR()
---SELECT contato.id, endereco.id
---FROM
--- É necessário criar as referências de FK de CONTATO e ENDERECO para cadastrar FORNECEDOR
--- veja: https://pt.stackoverflow.com/questions/335489/sql-como-faço-um-insert-into-em-uma-tabela-que-tem-fk
 INSERT INTO FORNECEDOR(razao_social, nome_fantasia, email, descricao, contato, endereco)
 VALUES ('Pedigree Fornecimento','Pedigree','pedigree@pedigree.com','Fornecedor Pedigree',3, 2); -- 1
 INSERT INTO FORNECEDOR(razao_social, nome_fantasia, email, descricao, contato, endereco)
@@ -53,7 +44,6 @@ VALUES ('Dez Fornecimento','Rações Dez','racoesdez@outlook.com','Fornecedor Ra
 INSERT INTO FORNECEDOR(razao_social, nome_fantasia, email, descricao, contato, endereco)
 VALUES ('Royal Canin Fornecimento','Royal Canin','fornecimento@royalcanin.com.br','Fornecedor Royal Canin',8, 6); -- 5
 
--- Cadastro da Mercadoria 1
 INSERT INTO LOCAL(id, cep, setor, capacidade) VALUES (5,'76913-559', '13B', '10 Toneladas');
 INSERT INTO LOTE(id,data_fabricacao, data_vencimento)
 VALUES(6,parsedatetime('2020-10-17', 'yyyy-MM-dd'),parsedatetime('2022-10-17', 'yyyy-MM-dd') );
@@ -61,8 +51,9 @@ INSERT INTO MERCADORIA(nome, marca, descricao, fornecedor)
 VALUES ('Magnus Adulto Frango e Vegetais', 'Magnus', 'Ração Seca, com grãos médios, com embalagens de 15kg a 25kg',2);
 INSERT INTO ITEM_ESTOCADO(id,preco_compra, preco_venda, quantidade,local, lote, mercadoria)
 VALUES (15,10.90, 11.90, 20, 5, 6, 1);
-----------------------------------------------------------------------------------------------------------------------
--- Cadastro da Mercadoria 2
+
+
+
 INSERT INTO LOCAL(id, cep, setor, capacidade) VALUES (6,'76914-560', '13C', '20 Toneladas');
 INSERT INTO LOTE(id,data_fabricacao, data_vencimento)
 VALUES(7,parsedatetime('2019-09-17', 'yyyy-MM-dd'),parsedatetime('2023-09-18', 'yyyy-MM-dd') );
@@ -75,9 +66,6 @@ VALUES (16,9.85, 13.56, 30, 6, 7, 2);
 
 
 
-
-
--- Inserção de dados em locais
 INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('76914-560', '13D', '10 Toneladas');
 INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('76914-560', '13E', '10 Toneladas');
 INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('76914-560', '13F', '10 Toneladas');
@@ -86,3 +74,5 @@ INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('76914-560', '2G', '10 Tonelad
 INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('69311-014', '21C', '10 Toneladas');
 INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('69311-014', '21D', '10 Toneladas');
 INSERT INTO LOCAL(cep, setor, capacidade) VALUES ('69311-014', '21B', '10 Toneladas');
+
+--END
