@@ -71,15 +71,15 @@
             <div class="fields">
                 <div class="ten wide field">
                     <label>CEP</label>
-                    <input type="text" readonly th:text="*{local.cep}">
+                    <input type="text" readonly th:value="*{local.cep}">
                 </div>
                 <div class="six wide field">
                     <label>Setor</label>
-                    <input type="text" readonly th:text="*{local.setor}">
+                    <input type="text" readonly th:value="*{local.setor}">
                 </div>
                 <div class="six wide field">
                     <label>Capacidade</label>
-                    <input type="text" readonly th:text="*{local.capacidade}">
+                    <input type="text" readonly th:value="*{local.capacidade}">
                 </div>
                 <input type="hidden" th:field="*{local}" th:value="*{local.id}">
 
@@ -101,13 +101,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 
 <script>
-    <script>
     $(document).ready(() => {
         $('.ui.dropdown').dropdown();
-        $('#preco_compra').val('');
-        $('#preco_venda').val('');
-        $('#quantidade').val('');
-
 
         $('.ui.form').form({
             inline : true,
