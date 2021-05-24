@@ -14,7 +14,7 @@
         <button class="ui basic button"> <i class="icon user"></i><a href="cliente/cadastro">Adicionar Cliente</a></button>
         <br>
         <form method="get" th:action="@{/cliente}" class="ui fluid icon input">
-            <input type="text" name="nome" style="margin-right: 5px; margin-top:10px;" placeholder="Pesquisar Cliente">
+            <input type="text" name="nome" style="margin-right: 5px; margin-top:10px;" placeholder="Pesquisar Cliente por nome">
             <button class="ui primary mini button" type="submit"><i style="font-size: 20px" class="search icon"></i></button>
         </form>
         <br>
@@ -40,13 +40,13 @@
                 <td class="two wide field"><span th:text="${cliente.RG}">RG</span></td>
                 <td class="two wide field"><span th:text="${cliente.nome}">Nome</span></td>
 
-                <td id="fornecedor-options-buttons" class="two wide field">
+                <td id="fornecedor-options-buttons" class="one wide field">
                     <a class="ui mini basic blue button" th:href="@{/cliente/edit/{id}(id=${cliente.id})}">
                         <i class="edit outline icon"></i>Editar
                     </a>
-                    <a class="ui mini basic red button" th:href="@{/cliente/delete/{id}(id=${cliente.id})}">
-                        <i class="minus circle icon" ></i>Deletar
-                    </a>
+<!--                    <a class="ui mini basic red button" th:href="@{/cliente/delete/{id}(id=${cliente.id})}">-->
+<!--                        <i class="minus circle icon" ></i>Deletar-->
+<!--                    </a>-->
                 </td>
             </tr>
             </tbody>

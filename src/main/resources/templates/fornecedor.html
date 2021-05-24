@@ -16,7 +16,7 @@
         <button class="ui basic button"> <i class="icon user"></i><a href="fornecedor/cadastro">Adicionar Fornecedor</a></button>
         <br>
         <form method="get" th:action="@{/fornecedor}" class="ui fluid icon input">
-            <input type="text" name="nomeFantasia" style="margin-right: 5px; margin-top:10px;" placeholder="Pesquisar Fornecedor">
+            <input type="text" name="nomeFantasia" style="margin-right: 5px; margin-top:10px;" placeholder="Pesquisar Fornecedor por Nome Fantasia ou Razão Social">
             <button class="ui primary mini button" type="submit"><i style="font-size: 20px" class="search icon"></i></button>
         </form>
         <br>
@@ -53,9 +53,9 @@
                         <a class="ui mini basic blue button" th:href="@{/fornecedor/edit/{id}(id=${fornecedor.id})}">
                             <i class="edit outline icon"></i>Editar
                         </a>
-                        <a class="ui mini basic red button" th:href="@{/fornecedor/delete/{id}(id=${fornecedor.id})}">
-                            <i class="minus circle icon" ></i>Deletar
-                        </a>
+<!--                        <a class="ui mini basic red button" th:href="@{/fornecedor/delete/{id}(id=${fornecedor.id})}">-->
+<!--                            <i class="minus circle icon" ></i>Deletar-->
+<!--                        </a>-->
                     </td>
                 </tr>
             </tbody>
